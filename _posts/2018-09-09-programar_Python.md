@@ -848,7 +848,7 @@ plt.show()
 ```
 
 
-![png](/img/jupyter/output_76_0.png)
+![png](./img/jupyter/output_76_0.png)
 
 
 Se puede intercambiar tipos de datos entre numpy y pandas. A continuación se muestra cómo pasar un dataframe a numpy array.
@@ -892,7 +892,7 @@ plt.show()
     
 
 
-![png](/img/jupyter/output_80_1.png)
+![png](./img/jupyter/output_80_1.png)
 
 
 Existen dos zonas donde Matplotlib crea los gráficos:

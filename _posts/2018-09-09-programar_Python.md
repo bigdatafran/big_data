@@ -945,4 +945,4 @@ ax.set_ylabel("temperaturas")
 
 
 
-![png](/img/jupyter/output_83_1.png)
+![png](./img/jupyter/output_83_1.png)

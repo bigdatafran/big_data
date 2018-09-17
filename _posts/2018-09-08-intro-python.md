@@ -44,7 +44,7 @@ No se puede finalizar este post, sin antes hacer referencia a otra librería amp
 
 Una vez hecha la presentación de Python, me despido de tí hasta mi próximo post, que estará dedicado a la introducción a R y Rstudio. Hasta la próxima.
 <div class="descargar">
-<a href="../_jupyter/Intro_Python.ipynb" download>Descargar fichero *.ipynb</a>
+<a href="{{ site.url }}{{ site.baseurl }}/_jupyter/Intro_Python.ipynb" download>Descargar fichero *.ipynb</a>
 </div>
 
 

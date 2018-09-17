@@ -7,7 +7,7 @@ Aquí irán todos los post
 
 <div style="column-count: 2;">
 	{% for post in site.posts %}
-        <a href= "{{ post.url }}" > {{ post.title }}</a><br>
+        <a href= "{{ site.url }}{{ site.baseurl }}{{  post.url }}" > {{ post.title }}</a><br>
 	{% endfor %}
 </div>
 

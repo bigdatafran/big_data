@@ -43,9 +43,9 @@ De las librerías anteriores se hablará en futuros post's y el lector popdrá c
 No se puede finalizar este post, sin antes hacer referencia a otra librería ampliamente utilizada en el campo de representación de datos dentro del mundo Python, me estoy refiriendo a la librería [Matplotlib](https://matplotlib.org/){:target="_blank"}, a la que sin lugar a dudas se le dedicará otro post en el futuro.
 
 Una vez hecha la presentación de Python, me despido de tí hasta mi próximo post, que estará dedicado a la introducción a R y Rstudio. Hasta la próxima.
-
+<div class="descargar">
 <a href="../_jupyter/Intro_Python.ipynb" download>Descargar fichero *.ipynb</a>
-
+</div>
 
 
 

@@ -946,3 +946,7 @@ ax.set_ylabel("temperaturas")
 
 
 ![png](./img/jupyter/output_83_1.png)
+
+<div class="descargar">
+<a href="{{ site.url }}{{ site.baseurl }}/jupyter/Intro_Python.ipynb" download>Descargar fichero *.ipynb</a>
+</div>

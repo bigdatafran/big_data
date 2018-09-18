@@ -1,5 +1,5 @@
 //Para el código python
-.language-python  pre.highlight, div.r pre.highlight {
+.language-python  pre.highlight, .language-r pre.highlight {
     padding: 0.4em;
     line-height: 1.21429em;
     font-size: 14px;
@@ -10,7 +10,7 @@
     background-color: #f7f7f7 !important;
 }
 
-.language-python code, div.r pre.highlight code {
+.language-python code, .language-r code {
     background-color: #f7f7f7 !important;
 }
 // Para las salidas de resultados

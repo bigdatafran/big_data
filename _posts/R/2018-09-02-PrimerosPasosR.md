@@ -271,7 +271,7 @@ print(x<2)
 
 Para hacer comparaciones entre elementos se utilizan los operadores lógicos, los cuales son los siguientes:
 
--   &lt; Operador meno que
+-   &lt; Operador menor que
 -   &lt;= Operador menor o igual que
 -   &gt; Operador mayor que
 -   &gt;= Operador mayor o igual que

@@ -17,9 +17,12 @@ author: "Francisco Rodríguez"
 -   [Funciones de probabilidad.](#funciones-de-probabilidad.)
 -   [Instalación de paquetes.](#instalacion-de-paquetes.)
 
+* Tabla de contenidos:
+{:toc}
+
 Introducción.
 =============
-{:toc}
+
 
 Indudablemente exponer todas las posibilidades que nos ofrece R en un post sería una tarea totalmente imposible, dado que R cuenta con una gran cantidad de librerías o packages ( [se pueden ver en este enlace](https://cran.r-project.org/web/packages/available_packages_by_name.html){:target="\_blank"} ), además existen otras muchas que se pueden descargar desde otros muchos lugares de Internet, incluyendo a Github. Entre las librerías más utilizadas en R, se pueden destacar las que [se muestran en el siguiente enlace](http://makemeanalyst.com/20-most-popular-r-packages/){:target="\_blank"}.
 

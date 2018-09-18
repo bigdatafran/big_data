@@ -1,0 +1,367 @@
+---
+title: "Primeros pasos en R"
+author: "Francisco Rodríguez"
+date: "18 de septiembre de 2018"
+output: 
+  md_document:
+    toc: true
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Introducción.
+
+Indudablemente exponer todas las posibilidades que nos ofrece R en un post sería una tarea totalmente imposible, dado que R cuenta con una gran cantidad de librerías o packages ( [se peden ver en este enlace](https://cran.r-project.org/web/packages/available_packages_by_name.html){:target="_blank"} ), además existen otras muchas que se pueden descargar desde otros muchos lugares de Internet, incluyendo a Github. Entre las librerías más utilizadas en R, se pueden destacar las que [se muestran en el siguiente enlace](http://makemeanalyst.com/20-most-popular-r-packages/){:target="_blank"}.
+
+Por ese motivo, en lo que sigue me limitaré a hacer una pequeña introducción a los elementos más utilizados en R, con la finalidad de que el lector se vaya familiarizando con este lenguaje. Para profundizar más sobre ello, existen muchos tutoriales en Internet que facilitan este aprendizaje, uno de ellos y además en español [se puede ver en este enlace](https://cran.r-project.org/doc/contrib/rdebuts_es.pdf){:target="_blank"}.
+
+# Vectores y asignaciones.
+
+Uno de los elementos más utilizados por parte de R son los vectores, que no son más que conjuntos de datos, todos ellos del mismo tipo. Para incluir un vector a una variable determinada se utiliza el símbolo "<-" o también está permitido utilizar "=". Una de las formas más utilizadas para crear un vector es utilizando la expresión *c(....)*, pero para aclarar esto mejor se ve con el siguiente ejemplo:
+
+
+```{r vectores}
+x<-c(2.3,4.6,6.2,3.1,2.3)    # Asignación vector a una variable
+print(x)
+```
+
+Se pueden extraer elementos concretos del vector ( a diferencia de Python donde el índice de los elementos comienza en 1, en R ese índice comienza en 1). A continuación se muestra ejemplo sobre cómo entresacar algunos elementos del vector anteriormente definido:
+
+```{r}
+print(paste("El primer elemento del vector es",x[1]))
+print(paste("El tercer elemento del vector es",x[3]))
+```
+
+También existe la posibilidad de suprimir algún elemento del vector, para ello  hay que hacer referencia a ese elemento pero con signo negativo. Veamoslo en el siguiente ejemplo:
+
+```{r}
+print(x)
+x1<-x[-2]
+print("Sin el segundo elemento del vector quedaría:")
+print(x1)
+```
+
+Otras formas de hacer asignaciones de valores, se pueden ver en los siguientes ejemplos:
+
+```{r}
+x=c(2.3,4.6,6.2,3.1,2.3)  #Se utiliza el operador de asignación 0
+assign("x",c(2.3,4.6,6.2,3.1,2.3)) #Utilizando función assign
+c(2.3,4.6,6.2,3.1,2.3)->x  #Sentido flecha invertido
+
+#También se pueden unir vectores
+y<-c(x,c(0,0,0),x)
+y
+
+```
+
+# Operaciones con vectores.
+
+Las operaciones más usuales que se pueden hacer con vectores son las siguientes:
+
+* suma(+),resta(-),multiplicación(*),división(\\) y exponenciación(^)
+* Funciones aritméticas: log, exp, sin, cos, tan, sqrt, etc.
+* Máximo (max), Mínimo (min),rango(range)
+* Longitud del vector (número de elementos):length(...)
+* Producto y suma elemento a elemento. prod(),sum()
+* Media y varianza. mean(), var()
+
+Otra de las operaciones que se utiliza con cierta frecuencia es la ordenación de un vector. Para ello se puede utilizar la función *sort*.
+
+```{r}
+x<-c(4,2,7,3,8,5)
+print(sort(x))
+```
+Otra forma de hacer una ordenación de un vector es utilizando la función *order* que nos devuelve el indice de los elementos pero ordenados.
+
+```{r}
+print(order(x))
+#Observamos que el segundo valor es el mínimo, despues viene el cuarto valor, etc.
+#Ahora utilizo las posiciones dadas anteriormente para odenar el vector
+print("La ordenación usando la función order sería:")
+a<-order(x)
+print(x[a])
+```
+
+Para entender con claridad, el proceso que sigue R para hacer la ordenación, primero hay que conocer, cómo R puede cambiar el orden de colocación de los elementos de un vector. Para ello, supongamos que tenemos un vector con cuatro elementos y queremos intercalar el primero con el segundo y el tercero con el cuarto. Esto se ve con detalle en el siguiente ejemplo:
+
+```{r}
+x<-c(5,3,2,7)
+x1<-x[c(2,1,4,3)] 
+#El vector c(2,1,4,3) indica las posiciones que queremos aparezcan
+print(x)
+print("se intercambia primero con segundo y tercero con cuarto")
+print(x1)
+```
+
+# Generación de secuencias regulares.
+
+En el apartado anterior se ha mostrado cómo poder crear vectores en R. Ahora bien si por diferentes motivos, se desea crear vectores con muchos elementos y que además siguen una pauta de generación regular, el procedimiento indicado anteriormente es difícil de utilizar para conseguir este objetivo. Para esto R ofrece una serie de funciones que permiten generar vectores con una serie de valores que siguen una pauta regular en su generación. A continuación se muestran estas funciones, muy utilizadas dentro de R.
+
+Supongamos que queremos construir una secuencia de números consecutivos del 5 al 15, por ejemplo. En el siguiente ejemplo se muestra el operador ":" que permite obtener dicha secuencia:
+
+```{r}
+a<-5:15
+print(a)
+```
+
+Hay que tener en cuenta que el operador ":" tiene prioridad sobre el resto de operaciones. Veamos esto en el siguiente ejemplo.
+
+```{r}
+(2*3:10) #Observar que poner un paréntesis es equivalente (no igual) a usar la función print
+#Lo anterior primero calcula 3:10 y el resultado lo multiplica por 2
+print("cambiamos la prioridad con un paréntesis")
+(2*3):10
+#Lo anterior, primero calcula 2*3 y luego calcula 6:10
+```
+
+Si queremos una secuencia decreciente, lo haríamos de la siguiente manera:
+
+```{r}
+(10:1)
+```
+
+Otra función muy utilizada para generar secuencias es *la función seq()*, cuya sintaxis es la siguiente:
+
+*seq(from=value,to=value,by=value,length.out=value,along=vector)*
+
+```{r}
+print(seq(1,5))
+print(seq(1,14,by=2)) #Va de dos en dos
+print(seq(1,6,length.out = 4)) #Cuatro números equiespaciados
+print(seq(1,12,along.with = c(4,2,5)))
+#saca tres números equiespaciados pues length(c(4,2,5)) es tres 
+print(seq(1,10,by=3))
+```
+
+Se puede generar un vector con la función rep(). Veamos un ejemplo:
+
+```{r}
+x<-c(3,6,4,7,2)
+print(rep(x,times=3))
+print(rep(x,each=3)) #Repite cada número tres veces
+
+```
+
+# Operaciones lógicas.
+
+Se utilizan para poder hacer comparaciones. Una variable de tipo Lógica puede tomar los valores TRUE o FALSE, como se puede ver en el siguiente ejemplo:
+
+```{r}
+x<-3
+print(x>2)
+print(x<2)
+```
+
+Para hacer comparaciones entre elementos se utilizan los operadores lógicos, los cuales son los siguientes:
+
+* <  Operador meno que
+* <= Operador menor o igual que
+* \>  Operador mayor que
+* \>= Operador mayor o igual que
+* == Operador igualdad
+* != Operador distinto que
+
+Para enlazar varios elementos de comparación se utilizan los siguientes operadores lógicos:
+
+* AND (&)
+* OR  (|)
+* NOT (!)
+
+# Matrices en R
+
+Un matriz es otro elemento de trabajo de R, que realmente es similar a un vector, con la particularidad de que tiene **un atributo añadido denominado dim()**, que en el caso de dos dimensiones indica el número de filas y de columnas.
+
+Veamos a continuación algunos ejemplos sobre cómo poder construir las matrices en R.
+
+```{r}
+print(matrix(4,ncol = 5,nrow = 4))
+
+print(matrix(1:10,ncol = 3)) #Por defecto la construye por columnas
+
+print(matrix(1:9,ncol = 3, byrow = TRUE)) #Construcción por filas
+```
+
+Podemos construir una matriz desde un vector de la siguiente manera:
+
+```{r}
+a<-1:2000 #Construimos un vector de 2000 elementos
+print("a inicialmente es un vector con tipos de datos enteros")
+print(class(a))
+# Lo cambiamos ahora a una matriz de una dimensión determinada.
+dim(a)<-c(2,4,250)
+print("Ahora a es un array")
+print(class(a))
+
+#Si queremos sacar un solo elemento:
+print(a[2,3,6])
+
+#Si queremos sacar un subconjunto, se utiliza el operador :
+print(a[2,2,6:8])
+
+```
+
+# Funciones cbind() y rbind().
+
+Cuando se tienen varias matrices (aunque esto también sirve para los dataframes), las misma se pueden unir bien por filas o por columnas, para obtener otra nueva matriz. La unión por filas se hace con la función rbind() y para la unión por columnas se emplea cbind(). Veamos un ejemplo de cada uno de estos casos.
+
+```{r}
+print("Primero unión por columnas")
+
+a<-matrix(c(1,2,3,4,5,5),ncol = 3,nrow = 2)
+print(a)
+b<-matrix(c(8,9,10,11),ncol = 2, nrow = 2)
+print(b)
+c<-cbind(a,b) #la columnas de b se añaden a las de a
+print(c)
+print("Despues unión por filas")
+
+a<-matrix(c(1,2,3,4,5,5),ncol = 2,nrow = 3)
+print(a)
+b<-matrix(c(8,9,10,11),ncol = 2, nrow = 2)
+print(b)
+c<-rbind(a,b) #Las filas de b se añaden a las de a
+print(c)
+```
+
+# Dataframes.
+
+Los Dataframes en R son uno de los elementos más utilizados y están constituidos por un conjunto de filas y columnas, similar a las matrices, pero en esta caso los elementos de cada columna deben ser iguales para una columna determinada pero no todas las columnas deben tener el mismo tipo de lemento. Es decir una columna puede contener enteros, otra cadena de caracteres, ect.
+
+Una forma de construir un Dataframe puede ser la siguiente:
+
+```{r}
+datos<-data.frame(primera=c(1,2,3,4),segunda=c('a','b','c','d'),tercera=c(1.2,3.5,2.7,5.8))
+print(datos)
+```
+
+Podemos sacar información de un Dataframe de la siguiente manera:
+
+```{r}
+print(datos[,1:2])
+# Toda una columna como un vector
+print("Sólo una columna")
+print(datos$primera)
+```
+
+
+
+# Funciones de probabilidad.
+
+El paquete R tiene una *finalidad claramente estadística* y por lo tanto cuenta con una amplia gama de funciones que permiten operar con las **funciones de densidad** de cualquier tipo de distribución.
+
+En la tabla que sigue, se muestra en la columna de la izquierda la distribuciones más utilizadas de las variables aleatorias, mientras que en la columna de la derecha figura el nombre con la que R se refiere a esas distribuciones. 
+
+| Distribución        | Denominación R  |
+|---------------------|-----------------|
+| Gauss ó Normal      | norm            |
+| Exponencial         | exp             |
+| Gamma               | gamma           |
+| Poisson             | pois            |
+| Weibull             | weibull         |
+| Cauchy              | cauchy          |
+| Beta                | beta            |
+| t-student           | t               |
+| Fisher–Snedecor (F) | f               |
+| Chi-cuadrado        | chisq           |
+| Binomial            | binom           |
+| Geométrica          | geom            |
+| Hipergeométrica     | hyper           |
+| Logística           | logis           |
+| Lognormal           | lnorm           |
+| Binomial Negativa   | nbinom          |
+| Uniforme            | unif            |
+| Estadís. Wilcoxon   | wilcox          |
+
+
+Las funciones de R que operan con estas distribuciones tienen en común una letra (r,d,q ó p) que antecede al nombre de la distribución, y cuyo significado es el siguiente:
+
+* r ( proviene de random), permite generar números aleatorios de una distribución concreta. Por ejemplo rnorm(200,mean=4,sd=1) genera 200 números aleatorios de una distribución normal de media 4 y desviación típica 1.
+
+* d ( de función de densidad). Nos da el valor que tiene la función de densidad. Por ejemplo dnorm(3,mean=2,sd=1), nos da el valor de la función de densidad en 3 para una distribución normal de media 2 y desviación típica de 1.
+
+* q ( de quartil). Nos da el valor del quartil ( valor del eje x que deja a la izquierda una masa igual al argumento de la función). Por ejemplo qnorm(0.4,mean=2,sd=1), nos daría el valor de la abscisa que deja una masa de 0.4 en una distribución normal de media 2 y desviación típica de 1.
+
+* p ( de probabilidad).Nos daría el valor de la función de distribución acumulada en un determinado punto. Es decir, para una variable X nos daría P[X<=t]. Por ejemplo pnorm(2,mean=1,sd=1) nos daría P[X<=2] En una distribución normal de media 1 y desviación típica de 1.
+
+Veamos algunos ejemplos de esto, para una distribución normal.
+
+```{r}
+# Primero para d
+x <-seq(-10,10,by=.1)
+y<-dnorm(x) #Valor de la densidad para una normal(0,1)
+plot(x,y,type='l')
+
+
+
+```
+
+```{r}
+# Lo mismos pero una ditribución normal(2,0.2)
+
+x <-seq(-10,10,by=.1)
+y<-dnorm(x,mean = 2,sd=0.2) 
+plot(x,y,type='l')
+```
+
+
+Para la función de distribución acumulada.
+
+```{r}
+x <-seq(-10,10,by=.1)
+y<-pnorm(x,mean = 2,sd=3) 
+plot(x,y,type='l')
+```
+
+Ahora para los cuantiles.
+
+```{r}
+x <-seq(0,1,by=.05)
+y<-qnorm(x) 
+plot(x,y,type='l')
+```
+
+Ahora la generación de números aleatorios de una distribución normal
+
+```{r}
+y<-rnorm(200)
+hist(y)   #Representamos el histograma
+
+```
+
+Las dos funciones que siguen se suelen usar a menudo para el contraste de normalidad, y lo que hace es comparar los cuantiles empíricos con los cuantiles teóricos. En este caso dado que los puntos se distribuyen bien a los largo de la línea diagonal, se podría concluir que los datos se ajustan razonablemente bien a una distribución normal.
+
+```{r}
+qqnorm(y)
+qqline(y)
+```
+
+# Instalación de paquetes.
+
+Cuando se instala R, por defecto se cargan un serie de paquetes que no cubren necesariamente todas las necesidades de los usuarios finales. Por ello se hace necesario proceder a cargar en cada momento los paquetes que se necesiten y que por defecto no se hayan cargado en R.
+
+Para ver los paquetes instalados por defecto, bien se puede mirar en la parte inferior de Rstudio en la pestaña "Packages", o bien se puede ejecutar la siguiente instrucción:
+
+```{r}
+getOption("defaultPackages") 
+```
+
+Posteriormente los paquetes se instalarán con la instrucción:
+
+install.package( )
+
+Con la instrucción anterior lo que se hace es descargar el paquete en nuestro equipo, para que el mismo quede listo para cuando lo necesitemos. Para cargar el paquete en la memoria del ordenador y lo podamos usar se utiliza uno de las dos instrucciones siguientes:
+
+* library()
+* require()
+
+Si estamos escribiendo un script de código R que necesite cargar un paquete con la instrucción *install.package()* cada vez que ejecutemos el código, se va a emplear un tiempo determinado para descargar el paquete desde la red. Para evitar, lo que se hace es comprobar si el paquete ya esta o no descargado, si no está lo descarga y después lo carga en memoria. Si ya está descargado de la red se hace la carga directamente. Para conseguir esto se utiliza la siguiente instrucción ( en este ejemplo concreto para cargar la librería MASS).
+
+```r
+if(!require(MASS)){install.packages("MASS")};require(MASS)
+```
+
+

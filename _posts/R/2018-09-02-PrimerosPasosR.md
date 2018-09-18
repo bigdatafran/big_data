@@ -16,7 +16,7 @@ author: "Francisco Rodríguez"
 -   [Dataframes.](#dataframes.)
 -   [Funciones de probabilidad.](#funciones-de-probabilidad.)
 -   [Instalación de paquetes.](#instalacion-de-paquetes.)
-
+<a name="introduccion."></a>
 Introducción.
 =============
 
@@ -442,7 +442,7 @@ print(c)
 Dataframes.
 ===========
 
-Los Dataframes en R son uno de los elementos más utilizados y están constituidos por un conjunto de filas y columnas, similar a las matrices, pero en esta caso los elementos de cada columna deben ser iguales para una columna determinada pero no todas las columnas deben tener el mismo tipo de lemento. Es decir una columna puede contener enteros, otra cadena de caracteres, ect.
+Los Dataframes en R son uno de los elementos más utilizados y están constituidos por un conjunto de filas y columnas, similar a las matrices, pero en esta caso los elementos de cada columna deben ser iguales para una columna determinada pero no todas las columnas deben tener el mismo tipo de elemento. Es decir una columna puede contener enteros, otra cadena de caracteres, ect.
 
 Una forma de construir un Dataframe puede ser la siguiente:
 
@@ -529,7 +529,7 @@ y<-dnorm(x) #Valor de la densidad para una normal(0,1)
 plot(x,y,type='l')
 ```
 
-![](Primeros_paso_R_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](./img/R/2018-09-02/figure-markdown_github/unnamed-chunk-18-1.png)
 
 ``` r
 # Lo mismos pero una ditribución normal(2,0.2)
@@ -539,7 +539,7 @@ y<-dnorm(x,mean = 2,sd=0.2)
 plot(x,y,type='l')
 ```
 
-![](Primeros_paso_R_files/figure-markdown_github/unnamed-chunk-19-1.png)
+![](./img/R/2018-09-02/figure-markdown_github/unnamed-chunk-19-1.png)
 
 Para la función de distribución acumulada.
 
@@ -549,7 +549,7 @@ y<-pnorm(x,mean = 2,sd=3)
 plot(x,y,type='l')
 ```
 
-![](Primeros_paso_R_files/figure-markdown_github/unnamed-chunk-20-1.png)
+![](./img/R/2018-09-02/figure-markdown_github/unnamed-chunk-20-1.png)
 
 Ahora para los cuantiles.
 
@@ -559,7 +559,7 @@ y<-qnorm(x)
 plot(x,y,type='l')
 ```
 
-![](Primeros_paso_R_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](./img/R/2018-09-02/figure-markdown_github/unnamed-chunk-21-1.png)
 
 Ahora la generación de números aleatorios de una distribución normal
 
@@ -568,7 +568,7 @@ y<-rnorm(200)
 hist(y)   #Representamos el histograma
 ```
 
-![](Primeros_paso_R_files/figure-markdown_github/unnamed-chunk-22-1.png)
+![](./img/R/2018-09-02/figure-markdown_github/unnamed-chunk-22-1.png)
 
 Las dos funciones que siguen se suelen usar a menudo para el contraste de normalidad, y lo que hace es comparar los cuantiles empíricos con los cuantiles teóricos. En este caso dado que los puntos se distribuyen bien a los largo de la línea diagonal, se podría concluir que los datos se ajustan razonablemente bien a una distribución normal.
 
@@ -577,7 +577,7 @@ qqnorm(y)
 qqline(y)
 ```
 
-![](Primeros_paso_R_files/figure-markdown_github/unnamed-chunk-23-1.png)
+![](./img/R/2018-09-02/figure-markdown_github/unnamed-chunk-23-1.png)
 
 Instalación de paquetes.
 ========================
@@ -606,3 +606,7 @@ Si estamos escribiendo un script de código R que necesite cargar un paquete con
 ``` r
 if(!require(MASS)){install.packages("MASS")};require(MASS)
 ```
+
+<div class="descargar">
+<a href="{{ site.url }}{{ site.baseurl }}/CodeR/Primeros_paso_R.Rmd" download>Descargar fichero *.ipynb</a>
+</div>

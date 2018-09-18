@@ -23,7 +23,6 @@ author: "Francisco Rodríguez"
 Introducción.
 =============
 
-
 Indudablemente exponer todas las posibilidades que nos ofrece R en un post sería una tarea totalmente imposible, dado que R cuenta con una gran cantidad de librerías o packages ( [se pueden ver en este enlace](https://cran.r-project.org/web/packages/available_packages_by_name.html){:target="\_blank"} ), además existen otras muchas que se pueden descargar desde otros muchos lugares de Internet, incluyendo a Github. Entre las librerías más utilizadas en R, se pueden destacar las que [se muestran en el siguiente enlace](http://makemeanalyst.com/20-most-popular-r-packages/){:target="\_blank"}.
 
 Por ese motivo, en lo que sigue me limitaré a hacer una pequeña introducción a los elementos más utilizados en R, con la finalidad de que el lector se vaya familiarizando con este lenguaje. Para profundizar más sobre ello, existen muchos tutoriales en Internet que facilitan este aprendizaje, uno de ellos y además en español [se puede ver en este enlace](https://cran.r-project.org/doc/contrib/rdebuts_es.pdf){:target="\_blank"}.

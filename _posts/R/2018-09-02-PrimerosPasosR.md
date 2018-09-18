@@ -25,8 +25,7 @@ Indudablemente exponer todas las posibilidades que nos ofrece R en un post serí
 
 Por ese motivo, en lo que sigue me limitaré a hacer una pequeña introducción a los elementos más utilizados en R, con la finalidad de que el lector se vaya familiarizando con este lenguaje. Para profundizar más sobre ello, existen muchos tutoriales en Internet que facilitan este aprendizaje, uno de ellos y además en español [se puede ver en este enlace](https://cran.r-project.org/doc/contrib/rdebuts_es.pdf){:target="\_blank"}.
 
-Vectores y asignaciones.
-========================
+#Vectores y asignaciones.
 {:toc}
 Uno de los elementos más utilizados por parte de R son los vectores, que no son más que conjuntos de datos, todos ellos del mismo tipo. Para incluir un vector a una variable determinada se utiliza el símbolo "&lt;-" o también está permitido utilizar "=". Una de las formas más utilizadas para crear un vector es utilizando la expresión *c(....)*, pero para aclarar esto mejor se ve con el siguiente ejemplo:
 

@@ -7,7 +7,7 @@ Todos los post publicados:
 
 <div style="column-count: 2;">
 	{% for post in site.posts %}
-        <a href= "{{ site.url }}{{ site.baseurl }}{{  post.url }}" > {{ post.title }}</a><br>
+        <a href= "{{ site.url }}{{ site.baseurl }}{{  post.url }}" > {{ post.title }}-( {{ post.date | date_to_string }} )</a><br>
 	{% endfor %}
 </div>
 

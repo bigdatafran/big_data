@@ -7,9 +7,12 @@ tags: [h2o,python]
 author: "Francisco Rodríguez"
 ---
 
-<h1>Tabla de contenidos<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Introduccion" data-toc-modified-id="Introducción-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Introducción</a></span></li><li><span><a href="#Construccion-del-modelo." data-toc-modified-id="Construcción-del-modelo.-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Construcción del modelo.</a></span></li><li><span><a href="#Detalles-del-modelo." data-toc-modified-id="Detalles-del-modelo.-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Detalles del modelo.</a></span></li><li><span><a href="#Perfomance-versus-prediction." data-toc-modified-id="Perfomance-versus-prediction.-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Perfomance versus prediction.</a></span></li></ul></div>
-<a name="Introduccion"></a>
+# Contenido
+{:.no_toc}
+
+* TOC
+{:toc}
+
 # Introducción #
 
 En este apartado tomamos un primer contacto con h2o para python. Previamente se ha instalado con las instrucciones que figuran en el siguiente enlace: [http://h2o-release.s3.amazonaws.com/h2o/rel-wright/2/index.html](http://h2o-release.s3.amazonaws.com/h2o/rel-wright/2/index.html).

@@ -6,28 +6,20 @@ type: "normal"
 tags: [R,Rstudio,librerias]
 author: "Francisco Rodríguez"
 ---
--   [Introducción.](#introduccion.)
--   [Vectores y asignaciones.](#vectores-y-asignaciones.)
--   [Operaciones con vectores.](#operaciones-con-vectores.)
--   [Generación de secuencias regulares.](#generacion-de-secuencias-regulares.)
--   [Operaciones lógicas.](#operaciones-logicas.)
--   [Matrices en R](#matrices-en-r)
--   [Funciones cbind() y rbind().](#funciones-cbind-y-rbind.)
--   [Dataframes.](#dataframes.)
--   [Funciones de probabilidad.](#funciones-de-probabilidad.)
--   [Instalación de paquetes.](#instalacion-de-paquetes.)
+# Contenido
+{:.no_toc}
 
-* Tabla de contenidos:
+* TOC
 {:toc}
 
-Introducción.
+Introducción
 =============
 
 Indudablemente exponer todas las posibilidades que nos ofrece R en un post sería una tarea totalmente imposible, dado que R cuenta con una gran cantidad de librerías o packages ( [se pueden ver en este enlace](https://cran.r-project.org/web/packages/available_packages_by_name.html){:target="\_blank"} ), además existen otras muchas que se pueden descargar desde otros muchos lugares de Internet, incluyendo a Github. Entre las librerías más utilizadas en R, se pueden destacar las que [se muestran en el siguiente enlace](http://makemeanalyst.com/20-most-popular-r-packages/){:target="\_blank"}.
 
 Por ese motivo, en lo que sigue me limitaré a hacer una pequeña introducción a los elementos más utilizados en R, con la finalidad de que el lector se vaya familiarizando con este lenguaje. Para profundizar más sobre ello, existen muchos tutoriales en Internet que facilitan este aprendizaje, uno de ellos y además en español [se puede ver en este enlace](https://cran.r-project.org/doc/contrib/rdebuts_es.pdf){:target="\_blank"}.
 
-#Vectores y asignaciones.
+# Vectores y asignaciones.
 {:toc}
 Uno de los elementos más utilizados por parte de R son los vectores, que no son más que conjuntos de datos, todos ellos del mismo tipo. Para incluir un vector a una variable determinada se utiliza el símbolo "&lt;-" o también está permitido utilizar "=". Una de las formas más utilizadas para crear un vector es utilizando la expresión *c(....)*, pero para aclarar esto mejor se ve con el siguiente ejemplo:
 

@@ -1,5 +1,5 @@
 ---
-title: Presentación de python
+title: Presentación de Python
 layout: post
 category: [python]
 type: "normal"

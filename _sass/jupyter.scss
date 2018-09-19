@@ -45,3 +45,29 @@
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px
 }
+
+//Añado lo siguiente para el scroll to top
+.scrollToTop {
+    margin: 0 30px 20px 0;
+    text-align: center;
+    text-decoration: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: none;
+    background-color:transparent;
+    border: 2px solid #4CAF50;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 35px;
+  }
+  
+  .scrollToTop:hover {
+    text-decoration: none;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white !important;
+    border-radius: 35px;
+  }
+  

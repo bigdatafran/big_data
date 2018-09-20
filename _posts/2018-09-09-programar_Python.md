@@ -1,7 +1,7 @@
 ---
 title: Primeros pasos con Python
 layout: post
-category: [python,numpy,pandas,matplotlib]
+category: [Python,Numpy,Pandas,Matplotlib]
 type: "normal"
 tags: [python,numpy,pandas,matplotlib]
 author: "Francisco Rodríguez"

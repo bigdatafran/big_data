@@ -3,7 +3,7 @@ title: Presentación de Python
 layout: post
 category: [Python]
 type: "normal"
-tags: [anaconda,python,instalación]
+tags: [Anaconda,Python,Instalación]
 author: "Francisco Rodríguez"
 ---
 Python es un lenguaje de **programación libre de propósito general** que es utilizado por una comunidad muy amplia de usuarios. A pesar de ser un lenguaje genérico, son muchos los módulos que hoy en día se han desarrollado para poder ser utilizados dentro de el campo de Big Data y por ese motivo su utilización tendrá un lugar destacado dentro de las exposiciones que se harán en todo este sitio web.

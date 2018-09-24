@@ -3,7 +3,7 @@ title: Introducción h2o Python
 layout: post
 category: [Python,H2o]
 type: "normal"
-tags: [h2o,python]
+tags: [H2o,Python]
 author: "Francisco Rodríguez"
 ---
 

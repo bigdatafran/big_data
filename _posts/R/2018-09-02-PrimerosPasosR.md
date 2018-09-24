@@ -3,7 +3,7 @@ title: Primeros pasos con R
 layout: post
 category: [R,Rstudio,Package]
 type: "normal"
-tags: [R,Rstudio,librerias]
+tags: [R,Rstudio,Librerias]
 author: "Francisco Rodríguez"
 ---
 # Contenido

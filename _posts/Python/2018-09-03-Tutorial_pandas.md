@@ -438,7 +438,7 @@ El significado de cada uno de los parámetros es el ya comentado anteriormente, 
 * major_axis. Los índices que corresponden al eje 1
 * minos_axis. Los índices que corresponden al eje 2
 
-## ¿ Cómo crear un Panel ##
+## ¿ Cómo crear un Panel ? ##
 
 Para crear este tipo de datos, se puede utilizar:
 

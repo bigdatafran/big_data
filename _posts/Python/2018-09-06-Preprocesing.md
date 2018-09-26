@@ -796,5 +796,5 @@ if __name__ == '__main__':
 ![png](./img/jupyter/2018-09-06-Preprocesing/output_66_1.png)
 
 <div class="descargar">
-<a href="{{ site.url }}{{ site.baseurl }}/jupyter/Pre_processing.md" download>Descargar fichero *.ipynb</a>
+<a href="{{ site.url }}{{ site.baseurl }}/jupyter/Pre_processing.ipynb" download>Descargar fichero *.ipynb</a>
 </div>

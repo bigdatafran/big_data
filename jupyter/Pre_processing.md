@@ -1,32 +1,20 @@
----
-title: Pre-proceso datos
-layout: post
-category: [Python,Scikit-learn]
-type: "normal"
-tags: [Python,Datos,Preproceso,Estandarización]
-author: "Francisco Rodríguez"
----
 
+<h1>Tabla de contenidos<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Intruducción." data-toc-modified-id="Intruducción.-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Intruducción.</a></span></li><li><span><a href="#Estandarización-de-los-datos." data-toc-modified-id="Estandarización-de-los-datos.-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Estandarización de los datos.</a></span><ul class="toc-item"><li><span><a href="#Función-scale." data-toc-modified-id="Función-scale.-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Función scale.</a></span></li><li><span><a href="#Clase-StandardScaler." data-toc-modified-id="Clase-StandardScaler.-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Clase StandardScaler.</a></span></li></ul></li><li><span><a href="#Escalando-features-dentro-de-un-rango." data-toc-modified-id="Escalando-features-dentro-de-un-rango.-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Escalando features dentro de un rango.</a></span></li><li><span><a href="#Transformaciones-no-lineales." data-toc-modified-id="Transformaciones-no-lineales.-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Transformaciones no lineales.</a></span></li><li><span><a href="#Normalización." data-toc-modified-id="Normalización.-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Normalización.</a></span></li><li><span><a href="#Binarización" data-toc-modified-id="Binarización-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>Binarización</a></span></li><li><span><a href="#Codificando-variables-alfanuméricas" data-toc-modified-id="Codificando-variables-alfanuméricas-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>Codificando variables alfanuméricas</a></span></li><li><span><a href="#Codificando-variables-categóricas." data-toc-modified-id="Codificando-variables-categóricas.-8"><span class="toc-item-num">8&nbsp;&nbsp;</span>Codificando variables categóricas.</a></span><ul class="toc-item"><li><span><a href="#Codificando-con-pandas." data-toc-modified-id="Codificando-con-pandas.-8.1"><span class="toc-item-num">8.1&nbsp;&nbsp;</span>Codificando con pandas.</a></span></li></ul></li><li><span><a href="#Imputando-valores-faltantes." data-toc-modified-id="Imputando-valores-faltantes.-9"><span class="toc-item-num">9&nbsp;&nbsp;</span>Imputando valores faltantes.</a></span></li><li><span><a href="#Generando-features-tipo-polinomio" data-toc-modified-id="Generando-features-tipo-polinomio-10"><span class="toc-item-num">10&nbsp;&nbsp;</span>Generando features tipo polinomio</a></span></li><li><span><a href="#Transformaciones-a-medida." data-toc-modified-id="Transformaciones-a-medida.-11"><span class="toc-item-num">11&nbsp;&nbsp;</span>Transformaciones a medida.</a></span></li></ul></div>
 
-# Contenido
-{:.no_toc}
-
-* TOC
-{:toc}
-
-# Introducción.
+# Intruducción.
 
 Existe una librería muy utilizada en trabajos de machine learning [denominada scikit-learn](http://scikit-learn.org/stable/){:target="_blank"} que contiene multitud de procedimientos para realizar estudios estadísticos de los datos. En este post comenzamos la andadura de conocer esta librería, utilizando el enfoque de transformar las datos para conseguir determinados objetivos que faciliten el objetivo perseguido.
 
 En trabajos de  machine learning son muchas las ocasiones en las que se necesita trabajar con variables (features) que tengan una métrica similar de cara a poder realizar comparaciones fiables entre ellas.
 
-Para poder realizar este trabajo de una forma fácil y cómoda scikit-learn proporciona una serie de procedimientos o funciones que se encargan de hacer un trabajo preparatorio de los datos antes de comenzar el correspondiente procesamiento.
+Para poder realziar este trabajo de una forma fácil y cómoda scikit-learn propociona una serie de procedimientos o funciones que se encargan de hacer un trabajo preparatotio de los datos antes de comenzar elcorrespondiente procesamiento.
 
-Todas estas técnicas son las que de una forma resumida se presentan en está sección, con la finalidad de mostrar el lector un pequeño resumen sobre su uso, y después si se quieren ampliar conocimientos sobre determinado tema se puede acudir a la API de scikip-learn (en este caso concreto en el paquete ** sklearn.preprocessing** ) para tomar pleno conocimiento de todas las posibilidades que ofrece.
+Todas estas técnicas son las que de una forma resumida se presentan en está sección, con la dinalidad de mostrar el lector un pequeño resumen sobre su uso, y después si se quieren ampliar conocimientos sobre determinado tema se puede acudir a la API de scikip-learn (en este caso concreto en el paquete ** sklearn.preprocessing** ) para tomar pleno conocimiento de todas las posibilidades que ofrece.
 
 # Estandarización de los datos.
 
-La estandarización de los datos consiste en emplear una técnica de tal manera que los datos resultantes tengan una media de cero y una desviación típica de 1. Lo más normal es que esta estandarización se realice sobre las columnas (axis=0), aunque scikit-learn presenta también la posibilidad de hacerlo sobre las filas ( axis=1).
+La estandarización de los datos consiste en emplear una técnica de tal manera que los datos resultantes tengan una media de cero y una desviación típica de 1. Lo más normal es que esta estandarización se realice sobre las columnas (axis=0), aunque scikt-learn presenta también la popsibilidad de hacerlo sobre las filas ( axis=1).
 
 Para conseguir este objetivo, lo que se hace es restar a todos los datos la media de los mismos y después escalarlos, para lo cual se divide el resultado anterior por la desviación típica de los datos originales.
 
@@ -111,17 +99,17 @@ El paquete preprocessing igualmente tiene una clase de utilidad muy interesante 
 scaler = preprocessing.StandardScaler().fit(X_train)
 print(scaler)
 print("La media de las columnas es: ",scaler.mean_ )
-print("La desviación típica de las columnas es: ", scaler.scale_,"\n" )
+print("La desviación típca de las columnas es: ", scaler.scale_,"\n" )
 
-print("Ahora estandarizamos los datos por columnas")
+print("Ahora estadarizamos los datos por columnas")
 scaler.transform(X_train) 
 ```
 
     StandardScaler(copy=True, with_mean=True, with_std=True)
     La media de las columnas es:  [1.         0.         0.33333333]
-    La desviación típica de las columnas es:  [0.81649658 0.81649658 1.24721913] 
+    La desviación típca de las columnas es:  [0.81649658 0.81649658 1.24721913] 
     
-    Ahora estandarizamos los datos por columnas
+    Ahora estadarizamos los datos por columnas
     
 
 
@@ -133,7 +121,7 @@ scaler.transform(X_train)
 
 
 
-Si tuviéramos los datos distribuidos es datos para el entrenamiento (data_train) y para el chequeo del modelo (data_test), si tificamos los datos de entrenamiento como se ha hecho anteriormente, también habría que hacerlo para los datos de chequeo y ese trabajo se haría de la siguiente manera:  
+Si tuvieramos los datos distribuidos es datos para el entrenamiento (data_train) y para el chequeo del modelo (data_test), si tificamos los datos de entrenamiento como se ha hecho anteriormente, también habría que hacerlo para los datos de chequeo y ese trabajo se haría de la siguiente manera:  
 
 
 ```python
@@ -166,7 +154,7 @@ X_test_init
 
 # Escalando features dentro de un rango.
 
-Una alternativa al proceso de estandarización que se ha visto en el apartado anterior consiste en escalar las variables dentro de un determinado rango de valores ( normalmente entre cero y uno ). Para realizar esta transformación scikit Learn ofrece dos clases sumamente practicas: **MinMaxScaler y MaxAbsScaler **.
+Una alternativa al proceso de estandarización que se ha visto en el apartado anterior consiste en escalar las variables dentro de un determinado rango de valores ( normalmente entre cero y uno ). Para realizar esta transformación scikit Learn ofrece dos clases súmamente practicas: **MinMaxScaler y MaxAbsScaler **.
 
 A continuación se muestra un ejemplo con la finalidad de clarificar su utilización:
 
@@ -224,7 +212,7 @@ X_train_minmax_0_3
 
 
 
-Si queremos recuperar los valores originales de la la última transformación, lo haríamos de la siguiente manera.
+Si queremos recuperar los valores orginales de la la última transformación, lo haríamos de la siguiente manera.
 
 
 ```python
@@ -246,7 +234,7 @@ Este procedimiento consiste en otra forma diferente de transformar los datos par
 
 Pra hacer este tipo de transformaciones scikit learn dispone de dos clases: QuantileTransformer y quantile_transform. En ambos casos, la salida de la transformación va a seguir una distribución uniforme o normal.
 
-En el caso de que la salida sea una distribución normal ( que es la opción por defecto ) hay que tener en cuenta que el valor de la variable va a coincidir con el percentil que indica su valor. Veamos esto con un ejemplo.
+En el caso de que la salida sea una distribución normal ( que es la opción por defecto ) hay que tener en cuenta que el valor de la variable va a coincidir con el precentil que indica su valor. Veamos esto con un ejemplo.
 
 
 ```python
@@ -271,9 +259,9 @@ np.percentile(X_train[:, 0], [0, 25, 50, 75, 100])
 
 ** Nota** : El código anterior debe ejecutarse con al menos la versión 0.19 de scikit learn, con versión 0.18 genera error, pues no conoce las clases QuantileTransformer y quantile_transform.
 
-Como puede verse en el código anterior, los percentiles 0, 25, 50, 75 y 100 para los valores de X_train sin transformar se encuentran en los valores 4.3, 5.1, 5.8, 6.5 y 7.9 respectivamente. 
+Como puede verse en el código anterior, los percentiles 0, 25, 50, 75 y 100 para los valores de X_train sin transformar se encuentrar en los valores 4.3, 5.1, 5.8, 6.5 y 7.9 respectivamente. 
 
-Sin embargo si utilizamos los datos transformados, entonces los valores de la variable coincide con el percentil correspondiente. Veamos esto con el siguiente código.
+Sin embargo si utilizamos los datos transformados, entonces los valores de la variable coincide con el precentil correspondiente. Veamos esto con el siguiente código.
 
 
 ```python
@@ -336,7 +324,7 @@ quantile_transformer.quantiles_
 
 # Normalización.
 
-El proceso de consiste en escalar los datos iniciales para conseguir que tengan una distribución uniforme. Este tipo de procedimientos es la base de [Vector Space Model](https://en.wikipedia.org/wiki/Vector_space_model), y es muy utilizado en clasificación de texto y en la obtención de clusters.
+El proceso de consiste en escalar los datos iniciales para conseguir que tengan una disribución uniforme. Este tipo de procedimientos es la base de [Vector Space Model](https://en.wikipedia.org/wiki/Vector_space_model), y es muy utilizado en clasificación de texto y en la obtención de clusters.
 
 Se utiliza la función *normalize* para ello y se pude usar la norma l1 o la norma l2. Veamos un ejemplo.
 
@@ -464,7 +452,7 @@ print(a_enc[1])
     ['a' 'b' 'c']
     
 
-Otra manera de codificar este tipo de variable es pasando a variables de tipo dummys, es decir que está representadas sólo por ceros o unos. Para hacer esto se utiliza la propiedad get_dummies de pandas. 
+Otra manera de codificar este tipo de variable es pasando a variables de tipo dummys, es decir que está representandas sólo por ceros o unos. Para hacer esto se utiliza la propiedad get_dummies de pandas. 
 
 
 ```python
@@ -498,13 +486,13 @@ b.values.argmax(1)
 
 # Codificando variables categóricas.
 
-En el apartado anterior, ya hemos visto cómo asignar valores numéricos a variables que están codificadas con literales. En el ejemplo anterior, tratábamos valores de "V" y "M", que pasaban a tener valores 0 ó 1. Si una variable categórica tuviera mayor número de categorías entonces el número de dígitos sería también mayor.
+En el apartado anterior, ya hemos visto cómo asignar valores numéricos a variables que están codificadas con literales. En el ejemplo anterior, tratábamos valores de "V" y "M", que pasaban a tener valores 0 ó 1. Si una variable categórica tuviera mayor número de categorias entonces el número de dígitos sería también mayor.
 
-Ahora que las variables categóricas ya están codificadas con datos numéricos, perfectamente estos valores podrían entrar a formar parte de las estrategias que utiliza scikit learn para construir los diferentes modelos, ahora bien hay que tener en cuenta que este tipo de codificación ( 1,2,3,.. por ejemplo) implica una escala de valores que en principio no tiene ningún sentido.
+Ahora que las variables categóricas ya están codificadas con datos numéricos, perfectamente estos vaolres podrían entrar a formar parte de las estrategias que utiliza scikit learn para construir los diferentes modelos, ahora bien hay que tener en cuenta que este tipo de codificación ( 1,2,3,.. por ejemplo) implica una escala de valores que en principio no tiene ningún sentido.
 
-Entonces para evitar este tipo de problemas y asignar a todos los valores posibles de una variable categórica el mismo valor, se emplea en estadística las denominadas *variables dummy* integradas por valores de cero o uno. La estrategia es la siguiente: Se construyen tantas nuevas variables como como diferentes valores pudiera tener la variable categórica, y entonces para una determinada observación se asigna cero a todas estas nuevas variable salvo a una que se le asigna un uno y es la columna que representa la categoría que se tiene para esa determinada observación. Veamos esto con un ejemplo.
+Entonces para evitar este tipo de problemas y asignar a todos los valores posibles de una variable categórica el mismo valor, se emplea en estadística las denominadas *variables dummy* integradas por valores de cero o uno. La estrategia es la siguiente: Se construyen tantas nuevas variables como como diferentes valores pudiera tener la variable categórica, y entonces para una determinada observación se asigna cero a todas estas nevas variable salvo a una que se le asigna un uno y es la columna que representa la categoría que se tiene para esa determinada observación. Veamos esto con un ejemplo.
 
-Supongamos que tenemos una variable denominada "sexo". Sería una variable categórica con valores por ejemplo 1 y 2. Como la variable sexo tiene dos categorías, se construirían dos nuevas variables, llamadas por ejemplo sexo_1 y sexo_2. Entonces la codificación en las nuevas variables se muestra en los siguientes ejemplos:
+Supongamos que tenemos una variable denominada "sexo". Sería una variable categórica con valores por ejemplo 1 y 2. Como la variable sexo tiene dos categorías, se construirian dos nuevas variables, llamadas por ejemplo sexo_1 y sexo_2. Entonoces la codificación en las nuevas variables se muestra en los siguientes ejemplos:
 
 
 | Sexo | Sexo_1 | Sexo_2 |
@@ -552,9 +540,9 @@ print("Salida para [0,1,1]--> ", enc.transform([[0, 1, 1]]).toarray())
 
 En la salida anterior, se puede ver que la columna 1 tiene dos categorías, la columna 2 tiene 3 y la columna 3,  4 categoría ( es el array de salida [2 3 4]). 
 
-El array de salida [0 2 5 9], indica que al codificar un vector de estas características, las posiciones 0 y 1 ( recordar que en numpy los índices comienzan con cero) son para codificar el primera variable, las posiciones 2,3,4 son para la segunda variable..., etc. 
+El array de salida [0 2 5 9], indica que al codificar un vector de estas características, las posiciones 0 y 1 ( recordar que en numpy los índices cominezan con cero) son para codificar el primera variable, las posiciones 2,3,4 son para la segunda varible..., etc. 
 
-Ahora ya se puede interpretar el vector de salida [[1., 0., 0., 1., 0., 0., 1., 0., 0.]], pues las dos primeras columnas se corresponden con la codificación de la primera Variable ( 0 se codifica como 1 0), las posiciones 2, 3 y 4 son para la codificación del valor de la segunda variable ( 1 se codifica como 0 1 0 ) y el resto de posiciones son para codificar el valor de la tercera variable ( 1 se codifica como 0 1 0 0). 
+Ahora ya se puede interpretar el vector de salidad [[1., 0., 0., 1., 0., 0., 1., 0., 0.]], pues las dos primeras columnas se corresponden con la codificación de la primera Variable ( 0 se codifica como 1 0), las posiciones 2, 3 y 4 son para la codificación del valor de la segunda variable ( 1 se codifica como 0 1 0 ) y el resto de posiciones son para codificar el valor de la tercera variable ( 1 se codifica como 0 1 0 0). 
 
 ## Codificando con pandas.
 
@@ -594,9 +582,9 @@ print(pd.get_dummies(df,columns='A') )
 
 # Imputando valores faltantes.
 
-Por regla general, cuando se trabaja con un fichero de datos, siempre existen imperfecciones en los mismo de todo tipo. Un caso muy frecuente es la falta de valor en algunas observaciones, estos valores faltantes, quedan codificado en numpy como np.nan.
+Por regla general, cuando se trabaja con un fichero de datos, siempres existen imperfecciones en los mismo de todo tipo. Un caso muy frecuente es la falta de valor en algunas observaciones, estos valores faltantes, quedan codificado en numpy como np.nan.
 
-Esta falta de valor origina serios problemas en la construcción de modelo si previamente no se ha procedido a su imputación. Son muchos los métodos existentes en la actualidad para proceder a la imputación de los valores omitidos, y scikit learn ofrece la lases *Imputer* para corregir esta deficiencia de los datos originales.
+Esta falta de valor origina serios problemas en la construcción de modelo si previamente no se ha procedido a su imputación. Son muchos los métodos existentes en la actualidad para proceder a la imputación de los valores omitidos, y scikit learn ofrece la lases *Imputer* para ccorregir esta deficiencia de los datos originales.
 
 En ejemplo que sigue se ha procedido a imputar la media para los valores faltantes. Veamos el ejemplo.
 
@@ -618,7 +606,7 @@ print(imp.transform(X))
 
 # Generando features tipo polinomio
 
-En ocasiones, es necesario añadir algún tipo de complejidad al modelo, y para ello, lo que se suele hacer es calcular valores nuevos de las variables, mediante funciones polinómicas. Para facilitar esta labor, se dispone de la clase PolynomialFeatures, cuyo funcionamiento se puede observar en el siguiente ejemplo:
+En ocasiones, es necesario añadir algun tipo de complejidad al modelo, y para ello, lo que se suele hacer es calcular valores nuevos de las variables, mediante funciones polinómicas. Para facilitar esta labor, se dispone de la clase PolynomialFeatures, cuyo funcionamiento se puede observar en el siguiente ejemplo:
 
 
 ```python
@@ -789,12 +777,14 @@ if __name__ == '__main__':
 ```
 
 
-![png](./img/jupyter/2018-09-06-Preprocesing/output_66_0.png)
+![png](output_66_0.png)
 
 
 
-![png](./img/jupyter/2018-09-06-Preprocesing/output_66_1.png)
+![png](output_66_1.png)
 
-<div class="descargar">
-<a href="{{ site.url }}{{ site.baseurl }}/jupyter/Pre_processing.md" download>Descargar fichero *.ipynb</a>
-</div>
+
+
+```python
+
+```

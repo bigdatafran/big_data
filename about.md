@@ -2,20 +2,21 @@
 layout: page
 title: El autor del Blog
 ---
-## About
-Emerald is a minimal theme created for Jekyll. The main purpose of Emerald is to provide a clear theme for those who want a blog ready to use, focused on the content and mobile-first.
+# Sobre el autor del blog
 
-For further details on Emerald, please visit the [repository on Github](https://github.com/KingFelix/emerald/).
+Mi nombre es **Francisco Rodríguez** y en el año 1.984 terminé en la Universidad de Valladolid mi licenciatura en Estadística. Desde que inicié esa carrera mi contacto con el mundo de los datos y números ha sido continuo y constante, ya que a los dos años de licenciarme ya aprobé las oposiciones al cuerpo de Diplomados en Estadística del Estado y al siguiente año también superé las pruebas de Estadísticos Superiores del Estado de España, cuerpo en el que en la actualidad ejerzo mi profesión.
 
-![Emerald](img/Emerald01.png "Emerald")
+Durante mi trayectoria profesional son muchas y diversas las operaciones estadísticas que me ha tocado dirigir y muchas más aún las votaciones que como máximo responsable de la Oficina del Censo Electoral de mi competencia he debido de afrontar.
 
-### Setup
-Emerald may be installed by simply downloading the .zip folder from the [repository on Github](https://github.com/KingFelix/emerald/archive/master.zip).
+A pesar de la edad sigo con la pasión de  siempre mi contacto con el mundo de la estadística en particular, y por mi cuenta he ampliado horizontes y en la actualidad estoy perfeccionado de forma autodidacta al mundo del big-data. 
 
-After extracting the content from the folder into the selected directory, you can type ``jekyll serve`` from the terminal, than open your browser to ``0.0.0.0:4000/emerald/`` and you will find it there.
+Los motivos anteriores, son los que me han llevado a querer compartir difundir mis conocimientos sobre estas materias, tan amplias y diversas. Por ese motivo en el presente blog tocaré materias de muy diversa índole, con la intención de transmitir conocimientos tanto de estadística como del mundo del manejo de amplios conjunto de datos, como puede ser Hadoop, Spark, pyspark, sparkR, etc.
 
-Additionally it is possible to fork the repository and use Github Pages as hosting. By following this way it will be enough to change the ``baseurl`` value into the ``_config.yml`` file, with the directory name of your project (for example /blog) or simply with a "/" (slash) if you want install Emerald in the root. 
+Lo hago con toda mi ilusión y espero poder aportar todo lo que se sobre la materia, para que mis conocimientos puedan servir a otras personas, con intereses similares a los míos.
 
-Last but not least: the [Jekyll documentation](http://jekyllrb.com) is the best starting point!
+A continuación dejo un formulario de contacto, donde para lo que necesites puedes dirigirte a mi, y así podamos estar en contacto. Un saludo y espero que el contenido del presente blog pueda servir a muchas personas.
 
-Enjoy!
+De todo corazón, hasta siempre
+
+
+{% include contactForm.html %}

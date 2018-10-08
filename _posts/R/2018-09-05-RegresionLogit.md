@@ -544,7 +544,7 @@ nagelkerke(glmXY)
 De momento con esto finalizo por ahora la exposición del modelo logit, en post's posteriores expondré modelos más complejos que el que se ha visto aquí, e igualmente se verá la utilidad de estos modelos para resolver los problemas de clasificación.
 
 <div class="descargar">
-<a href="{{ site.url }}{{ site.baseurl }}/CodeR/RegresionLogit_R.Rmd" download>Descargar fichero *.ipynb</a>
+<a href="{{ site.url }}{{ site.baseurl }}/CodeR/RegresionLogit_R.Rmd" download>Descargar fichero *.Rmd</a>
 </div>
 
 <div class="descargar">

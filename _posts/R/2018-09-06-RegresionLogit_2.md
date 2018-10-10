@@ -182,18 +182,22 @@ Como puede verse existe un sesgo claro hacia el valor cero donde se clasifican l
 input_unos <- datos2[which(datos2$ABOVE50K == 1), ]  # Donde están los 1
 input_ceros <- datos2[which(datos2$ABOVE50K == 0), ]  # Donde están los 0
 set.seed(100)  # Generamos una semilla
-input_unos_training <- sample(1:nrow(input_unos), 0.7*nrow(input_unos))  # sacamos el 70% de los unos para trainig
+input_unos_training <- sample(1:nrow(input_unos), 0.7*nrow(input_unos)) 
+ # sacamos el 70% de los unos para trainig
 
-input_ceros_training <- sample(1:nrow(input_ceros), 0.7*nrow(input_ceros))  # Sacamos una muestra del 70% de ceros
+input_ceros_training <- sample(1:nrow(input_ceros), 0.7*nrow(input_ceros))  
+# Sacamos una muestra del 70% de ceros
 
 training_unos <- input_unos[input_unos_training, ]  
 training_ceros <- input_ceros[input_ceros_training, ]
-trainingData <- rbind(training_unos, training_ceros)  # junto los unos y los ceros del training 
+trainingData <- rbind(training_unos, training_ceros)  
+# junto los unos y los ceros del training 
 
 # Creamos los datos del test
 test_unos <- input_unos[-input_unos_training, ]
 test_ceros <- input_ceros[-input_ceros_training, ]
-testData <- rbind(test_unos, test_ceros)  # Junto los unos y los ceros del subconjunto test
+testData <- rbind(test_unos, test_ceros) 
+ # Junto los unos y los ceros del subconjunto test
 ```
 
 Veamos que de esta manera las proporciones se mantienen
@@ -248,11 +252,14 @@ A continuación vamos a distinguir y separar las variables continuas de las vari
 
 ``` r
 #Primero los nombre de las variables de tipo factor
-Variables_Factor<-c ("WORKCLASS", "EDUCATION", "MARITALSTATUS", "OCCUPATION", "RELATIONSHIP", "RACE", "SEX", "NATIVECOUNTRY")
+Variables_Factor<-c ("WORKCLASS", "EDUCATION", "MARITALSTATUS", "OCCUPATION", 
+"RELATIONSHIP", "RACE", "SEX", "NATIVECOUNTRY")
 #A continuación los nombres de las variables de tipo continuo
-Variables_Continua<-c("AGE", "FNLWGT","EDUCATIONNUM", "HOURSPERWEEK", "CAPITALGAIN", "CAPITALLOSS")
+Variables_Continua<-c("AGE", "FNLWGT","EDUCATIONNUM", "HOURSPERWEEK", "CAPITALGAIN",
+ "CAPITALLOSS")
 
-#Creamos a continuación un dataframe vacio que contiene el nombre de las variables independientes, #y además la columna IV que contendrá el valor de este indicador
+#Creamos a continuación un dataframe vacío que contiene el nombre de las variables
+#independientes,y además la columna IV que contendrá el valor de este indicador
 
 iv_df <- data.frame(VARS=c(Variables_Factor, Variables_Continua), IV=numeric(14))  
 ```
@@ -260,10 +267,11 @@ iv_df <- data.frame(VARS=c(Variables_Factor, Variables_Continua), IV=numeric(14)
 A continuación se muestra el código para tener el valor final de IV para cada una de las variables, información que nos servirá para elegir las variables que entrarán en el análisis.
 
 ``` r
-# El paquete smbbinning (https://cran.r-project.org/web/packages/smbinning/smbinning.pdf)
+# El paquete smbbinning 
+#(https://cran.r-project.org/web/packages/smbinning/smbinning.pdf)
 #Sirve entre otras cosas para clacular el IV.
-#Además la función smbinning convierte una variable continua en categórica usando el método
-#denominado "recursive partitioning"
+#Además la función smbinning convierte una variable continua en categórica usando el 
+#método denominado "recursive partitioning"
 
 if (!require("smbinning")) install.packages("smbinning"); require("smbinning")
 ```
@@ -329,7 +337,8 @@ for(continuous_var in Variables_Continua){
 Elegimos las variables con mayor valor de IV para hacer la regresión logit
 
 ``` r
-logitMod <- glm(ABOVE50K ~ RELATIONSHIP + MARITALSTATUS+AGE + EDUCATIONNUM, data=trainingData, family=binomial(link="logit"))
+logitMod <- glm(ABOVE50K ~ RELATIONSHIP + MARITALSTATUS+AGE + EDUCATIONNUM,
+ data=trainingData, family=binomial(link="logit"))
 logitMod
 ```
 

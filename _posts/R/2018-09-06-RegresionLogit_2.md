@@ -12,18 +12,18 @@ author: "Francisco Rodríguez"
 * TOC
 {:toc}
 
--   [Introducción.](#introduccion.)
+
 
 Introducción.
 =============
 
 En el post anterior, ya se ha presentado los elementos básicos de un análisis de regresión LOGIT o PROBIT. También se expuso un pequeño ejemplo y las conclusiones que se pueden sacar del mismo. En el presente post voy a seguir utilizando este modelo, pero utilizando ya un ejemplo algo más complicado.
 
-Antes de entrar en materia, voy a explicar dos conceptos estadísticos, que van a servir para medir el nivel de dependencia de unas variables sobre la variable dependiente que se quiere predecir con el modelo. Estos dos conceptos son los denominados \*\* WOE (Weight of Evidence)\*\* y **VI ( information value)**.
+Antes de entrar en materia, voy a explicar dos conceptos estadísticos, que van a servir para medir el nivel de dependencia de unas variables sobre la variable dependiente que se quiere predecir con el modelo. Estos dos conceptos son los denominados **WOE (Weight of Evidence)** y **VI ( information value)**.
 
 **El valor de WOE** nos va a facilitar información del poder predictivo de una variable independiente en relación a otra variable dependiente.
 
-\*\*El valor de Information value (IV)\* es una técnica fácil y muy usada para seleccionar variables importantes en el modelo predictivo. A continuación se muestra una tabla que contiene los criterios más utilizados a la hora de aplicar esta técnica.
+**El valor de Information value (IV)** es una técnica fácil y muy usada para seleccionar variables importantes en el modelo predictivo. A continuación se muestra una tabla que contiene los criterios más utilizados a la hora de aplicar esta técnica.
 
 | Information value (IV) | Capacidad Predicción       |
 |------------------------|----------------------------|
@@ -35,7 +35,7 @@ Antes de entrar en materia, voy a explicar dos conceptos estadísticos, que van 
 
 En concreto la fórmula empleada para calcular el valor de WOE es la siguiente:
 
-\\\[ WOE= \frac{\% No-events \, o \, fracasos}{\% Events \, o\,  Exitos} \\\]
+\\\[ WOE= \frac{\% No-events \, o \, fracasos}{\% Events \, o\,  Éxitos} \\\]
 
 Es decir y a efectos prácticos, tendremos dos tipos de observaciones, una correspondiente a una variable que toma dos valores (1 y 0) y la otra correspondiente a una variable categórica. Entones a cada valor de la variable categórica le asignamos "Éxito", si el valor de la variable dicotómica toma el valor 1 o "Fracaso" si el valor de la dicotómica es cero. Con el código que sigue se explica mejor la forma de calcular este indicador estadístico.
 
@@ -233,7 +233,7 @@ table(trainingData$ABOVE50K)/nrow(trainingData)
     ## 0.7592138 0.2407862
 
 ``` r
-print("------------------");print("Proporcion en los datos test")
+print("------------------");print("Proporción en los datos test")
 ```
 
     ## [1] "------------------"

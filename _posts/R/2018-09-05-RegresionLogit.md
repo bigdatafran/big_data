@@ -5,6 +5,7 @@ category: [R,Regresion_Logit]
 type: "mat"
 tags: [Regresion,Clasificación,Regresion_Logit]
 author: "Francisco Rodríguez"
+comments: true
 ---
 # Contenido
 {:.no_toc}

@@ -5,6 +5,7 @@ category: [Python,H2o]
 type: "normal"
 tags: [H2o,Python]
 author: "Francisco Rodríguez"
+comments: true
 ---
 
 # Contenido

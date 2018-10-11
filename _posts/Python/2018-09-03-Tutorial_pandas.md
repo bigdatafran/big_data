@@ -5,6 +5,7 @@ category: [Python,Pandas]
 type: "normal"
 tags: [Python,Pandas,Numpy,Matplotlib]
 author: "Francisco Rodríguez"
+comments: true
 ---
 
 # Contenido

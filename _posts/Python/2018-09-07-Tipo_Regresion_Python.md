@@ -5,6 +5,7 @@ category: [Python,Scikit-learn]
 type: "mat"
 tags: [Python,regresion]
 author: "Francisco Rodríguez"
+comments: true
 ---
 
 

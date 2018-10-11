@@ -5,6 +5,7 @@ category: [R,Rstudio,Package]
 type: "normal"
 tags: [R,Rstudio,Librerias]
 author: "Francisco Rodríguez"
+comments: true
 ---
 # Contenido
 {:.no_toc}

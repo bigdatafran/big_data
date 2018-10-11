@@ -5,6 +5,7 @@ category: [Python,Graficos]
 type: "normal"
 tags: [Python,Matplotlib,Gráficos,Plot]
 author: "Francisco Rodríguez"
+comments: true
 ---
 
 

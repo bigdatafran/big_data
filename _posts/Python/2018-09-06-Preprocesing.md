@@ -5,6 +5,7 @@ category: [Python,Scikit-learn]
 type: "normal"
 tags: [Python,Datos,Preproceso,Estandarización]
 author: "Francisco Rodríguez"
+comments: true
 ---
 
 

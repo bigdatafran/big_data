@@ -5,6 +5,7 @@ category: [Python]
 type: "normal"
 tags: [Python,Plotly]
 author: "Francisco Rodríguez"
+comments: true
 ---
 
 

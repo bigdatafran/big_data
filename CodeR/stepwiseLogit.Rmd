@@ -1,0 +1,257 @@
+---
+title: "Untitled"
+output: 
+  md_document:
+    variant: markdown_github 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introducción # 
+
+En un post anterior ya se ha expuesto que se puede utilizar el criterio marcado por el indicador "IV" para seleccionar las variables que entrarían en el análisis. En el presente post, se va a utilizar otro criterio para hacer una selección de las variables a utilizar. 
+
+En este caso utilizaremos el método paso a paso ( stepwise, en terminología anglosajona ), que consiste en ir probando modelos hasta quedarnos con el que mejor explique el sistema que se está estudiando.
+
+En este caso existen dos métodos generales, que son los siguientes:
+
+1.- **forward**. Es decir "hacia adelante", que consiste en elegir un modelo básico y después ir añadiendo variables y mirando cómo va mejorando la capacidad explicativa del modelo, hasta llegar a un punto en que dicha capacidad explicativa no compensa la introducción de nuevas variables.
+
+2.- **backward**. Es decir "hacia atrás", que sería el recíproco del  caso anterior, es decir partimos de un modelo con muchas variables y vamos eliminado hasta la disminución en la capacidad explicativa del modelo sea significativa.
+
+Igualmente en este post también se va a exponer otro método de selección de variables basado en un método denominado "Leave-One-Out Cross Validación", inspirado en el método de validación de machine learning que lleva el mismo nombre.
+
+# Presentación de los datos #
+
+Vamos a ver cómo utilizar este método de selección de variables.
+
+```{r}
+datos=read.table(
+"http://freakonometrics.free.fr/saporta.csv",
+head=TRUE,sep=";")
+head(datos)
+```
+
+Las  observaciones se corresponden a personas que ingresan en urgencias debido a un (posible) infarto, queremos modelar estos datos para construir un modelo predictivo.
+
+```{r}
+str(datos)
+```
+
+A  continuación vamos a ver´cómo poder construir un modelo paso a paso. Utilizaremos para este caso el [criterio de información de Akaike](https://en.wikipedia.org/wiki/Akaike_information_criterion){:target="_blank"}.
+
+El criterio de información (AIC) de Akaike, se obtiene de la siguiente manera:
+
+\\[ AIC=2k-2ln(\widehat{L}) \\]
+
+Donde k es el número de parámetros estimados en el modelo y \\( \widehat{L} \\) es el máximo de la función de verosimilitud.
+
+# Modelo paso a paso forward
+
+Se construye inicialmente el modelo más corto y el modelo completo, para después ir poco a poco añadiendo variables
+
+```{r}
+reg0=glm(PRONO~1,data=datos,family=binomial)
+summary(reg0)
+```
+
+```{r}
+reg1=glm(PRONO~.,data=datos,family=binomial)
+summary(reg1)
+```
+
+Como vemos el valor del criterio de información de Akaike (AIC) disminuye del modelo más básico al completo. Veamos paso a paso cuando se para el proceso y con qué variables nos quedamos. Tener presente que se utiliza el parámetro "K=2" para utilizar el criterio AIC como elemento de parada del modelo.
+
+# Método forward
+
+```{r}
+step(reg0,scope=formula(reg1),direction="forward",k=2) 
+```
+Observamos que se queda con dos variables: REPUL e INCAR y con eso ya tenemos un valor de AIC=50.53, muy cerca del valor AIC para el modelo completo.
+
+
+Si utilizamos el criterio  [Schwarz Bayesian Information Criterion ( BIC )](https://en.wikipedia.org/wiki/Bayesian_information_criterion){:target="_blank"}, se cambiaría respecto del modelo anterior que en este caso **el valor del parámetro k sería k=log(n)** siendo n  el número de elementos de la muestra. Los resultados que se obtendrán serán los siguientes:
+
+
+```{r}
+n=nrow(datos)
+step(reg0,scope=formula(reg1),direction="forward",k=log(n)) 
+```
+
+En consecuencia, con el código anterior se puede ver que la variable REPUL es la que de forma segura hay que añadir al análisis, y además se mejora el modelo, añadiendo la variable INCAR.
+
+Hay que tener en cuenta que según Stone(1977), los resultados obtenidos con AIC son asintóticamente equivalentes a un *One-Leave-Out* Cross validatión, mientras que los datos obtenidos con BIC son asintóticamente equivalentes a los resultados obtenidos con un k-fold Cross Validation (Shao(1.997)), con 
+
+\\[ k=n[1-1/(log(n)-1)] \\]
+
+# Método backward 
+
+Veamos cómo sería si utilizamos el método backward ( es decir hacia atrás ). El código es muy similar al usado anteriormente y sería el siguiente.
+
+```{r}
+step(reg1,scope=formula(reg0),direction="backward",k=2)
+
+```
+
+Si no queremos que el método nos de mucha información se puede introducir el parámetro "trace=F", tal y como hacemos en el siguiente código.
+
+```{r}
+step(reg0,scope=formula(reg1),direction="forward",k=2, trace = F) 
+```
+
+
+# Utilización de Leave-One-Out Cross Validación
+
+El método denominado *Leave-One-Out Cross Validación* es muy utilizado en machine learning para validar un modelo. En este caso este método consiste en los siguiente.
+
+Crearemos 7 modelos de regresión logística, cada uno conteniendo como regresor una variable de la 7 variables independientes con las que se trabaja. Una vez definida una variable independiente y por lo tanto un modelo, generamos el modelo de regresión logit con n-1 observación y dejamos la restante para calcular la predicción que nos da el modelo. Si para cada modelo repetimos este proceso n veces, dejando en cada paso una observación diferente para predicción, al final lo que tenemos es un vector con n predicciones.
+
+Veamos a continuación cómo implementar este procedimiento. En primer lugar definimos la función "pred_i" que para cada n-1 observaciones y una sola variable independiente crea un modelo de regresión logit y calcula la predicción para el valor de la observación que no ha entrado en la construcción del modelo.
+
+```{r}
+name_var=names(datos) #Tomamos los nombres de las variables
+pred_i=function(i,k){
+  #Definimos la fórmula de regresión (una para cada variable)
+  fml = paste(name_var[8],"~",name_var[k],sep="")
+  #Definimos y calculamos el modelo. -i==eliminar observación i
+  reg=glm(fml,data=datos[-i,],family=binomial)
+  #Generamos la predicción
+  predict(reg,newdata=datos[i,],type="response")
+}
+
+```
+
+A continuación y apoyándonos en la función definida anteriormente, [calculamos la curva de roc](https://es.wikipedia.org/wiki/Curva_ROC){:target="_blank"} y su área correspondiente, para cada uno de los 7 modelos que se han construido y que están relacionados biunivocamente con las 7 variables independientes con las que trabajamos.
+
+
+```{r}
+if (!require("AUC")) install.packages("AUC"); require("AUC")
+ROC=function(k){
+  # Lammamos Y a la variable dependiente, es la que ocupa lugar 8
+  Y=datos[,8]=="SURVIE"
+  #Metemos las predicciones en un vector
+  S=Vectorize(function(i) pred_i(i,k))(1:length(Y))
+  #Calculamos la curva de roc y el área
+  R=roc(S,as.factor(Y))
+  return(list(roc=cbind(R$fpr,R$tpr), auc=AUC::auc(R)))
+}
+```
+
+Mostramos para cada una de las variables el valor del área que queda por debajo de la curva de roc del modelo correspondiente.
+
+```{r}
+AUC=rep(NA,7)
+for(k in 1:7){
+   AUC[k]=ROC(k)$auc
+   cat("Variable ",k,"(",name_var[k],") :",
+   AUC[k],"\n") }
+
+```
+
+Vemos que el mejor valor se obtiene para la variable "REPUL" y será la primera variable independiente que entre en el modelo.
+
+Veamos cómo quedarían las curvas de roc de cada uno de los 7 modelos generados.
+
+```{r}
+if (!require("RColorBrewer")) install.packages("RColorBrewer"); require("RColorBrewer")
+CL=brewer.pal(8, "Set1")[-7]
+plot(0:1,0:1,col="white",xlab="",ylab="")
+for(k in 1:7) 
+ lines(ROC(k)$roc,type="s",col=CL[k])
+ legend(.8,.55,name_var,col=CL,lty=1,cex=.8)
+
+```
+
+```{r}
+k0=which.max(AUC)
+print( paste("Primera variable que entra en el análisis: ", name_var[k0]))
+```
+
+
+Una vez obtenida una primera variable que entra en el proceso, vamos a dar un segundo paso para encontrar otras variables relevante en la explicación del modelo.
+
+```{r}
+pred_i=function(i,k){
+ vk=c(k0,k)
+ fml = paste(name_var[8],"~",paste(name_var[vk],
+ collapse="+"),sep="")
+ reg=glm(fml,data=datos[-i,],family=binomial)
+ predict(reg,newdata=datos[i,],
+ type="response")
+ }
+
+ ROC=function(k){
+ Y=datos[,8]=="SURVIE"
+ S=Vectorize(function(i) pred_i(i,k)) (1:length(Y))
+ R=roc(S,as.factor(Y))
+ return(list(roc=cbind(R$fpr,R$tpr),
+ auc=AUC::auc(R)))
+ }
+ plot(0:1,0:1,col="white",xlab="",ylab="")
+ for(k in (1:7)[-k0]) lines(ROC(k)$roc,type="s",col=CL[k])
+ segments(0,0,1,1,lty=2,col="grey")
+ legend(.8,.45,
+   name_var[-k0],
+   col=CL[-k0],lty=1,cex=.8)
+
+
+```
+
+Calculemos los valores del área de la curva de roc de las variables que nos quedan
+
+```{r}
+AUC=rep(NA,7)
+ for(k in (1:7)[-k0]){
+  AUC[k]=ROC(k)$auc
+  cat("Variable ",k,"(",name_var[k],") :",
+  AUC[k],"\n")
+ }
+
+```
+
+Como podemos apreciar los valores son muy similares, y el que mayor valor tiene es INCAR
+
+Si quisiéramos dar otro paso lo haríamos de la siguiente manera
+
+```{r}
+k0=c(k0,which.max(AUC))
+
+ pred_i=function(i,k){
+   vk=c(k0,k)
+   fml = paste(name_var[8],"~",paste(
+ name_var[vk],collapse="+"),sep="")
+ reg=glm(fml,data=datos[-i,],family=binomial)
+ predict(reg,newdata=datos[i,],
+ type="response")
+ }
+
+  ROC=function(k){
+  Y=datos[,8]=="SURVIE"
+  S=Vectorize(function(i) pred_i(i,k))(1:length(Y))
+  R=roc(S,as.factor(Y))
+  return(list(roc=cbind(R$fpr,R$tpr),
+  auc=AUC::auc(R)))
+ }
+ 
+ plot(0:1,0:1,col="white",xlab="",ylab="")
+ for(k in (1:7)[-k0]) lines(ROC(k)$roc,type="s",col=CL[k])
+ segments(0,0,1,1,lty=2,col="grey")
+ legend(.8,.45,name_var[-k0],
+ col=CL[-k0],lty=1,cex=.8)
+
+```
+
+Y los valores de las áreas:
+
+```{r}
+AUC=rep(NA,7)
+ for(k in (1:7)[-k0]){
+ AUC[k]=ROC(k)$auc
+ cat("Variable ",k,"(",name_var[k],") :",
+ AUC[k],"\n")
+ }
+```
+
+NOTA: Este post está basado [en esta pagina web](https://freakonometrics.hypotheses.org/19925){:target="-blank"}.

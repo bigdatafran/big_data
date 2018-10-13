@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{%  assign n = site.tags[page.tag] | size %} 
+<h2>{{ n }}&nbsp; Post's con tag &nbsp;=&nbsp; {{ page.tag  }}</h2><br>
+<hr >
+<ul class="archive-list">
+    {% for post in site.tags[page.tag] %}
+    <li>
+        <a href='{{ site.url }}{{ site.baseurl }}{{post.url}}'>{{post.title}}</a>
+        (<time datetime='{{post.date | date: "%Y-%m-%d"}}'>{{post.date | date: "%Y-%m-%d" }}</time>)
+    </li>
+    {% endfor %}
+</ul>
+<hr >
+{% if n < 10 %}
+    {% assign num = 9 |  minus: n %}
+    {% for i in (1..num) %}
+    <br>
+    {% endfor %}
+{% endif %}

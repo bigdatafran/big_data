@@ -3,7 +3,7 @@ title: Regresión con Python
 layout: post
 category: [Python,Scikit-learn]
 type: "mat"
-tags: [Python,regresion]
+tags: [Python,Regresion]
 author: "Francisco Rodríguez"
 comments: true
 ---

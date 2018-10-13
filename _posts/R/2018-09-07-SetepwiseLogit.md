@@ -3,7 +3,7 @@ title: Regresión Logit (Stepwise)
 layout: post
 category: [R,Regresion_Logit]
 type: "mat"
-tags: [Regresion,Clasificación,Regresion_Logit]
+tags: [Regresion,Clasificacion,Regresion_Logit]
 author: "Francisco Rodríguez"
 comments: true
 ---

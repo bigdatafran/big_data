@@ -3,7 +3,7 @@ title: Presentación de Python
 layout: post
 category: [Python]
 type: "normal"
-tags: [Anaconda,Python,Instalación]
+tags: [Anaconda,Python,Instalacion]
 author: "Francisco Rodríguez"
 comments: true
 ---

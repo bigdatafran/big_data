@@ -3,10 +3,11 @@ layout: page
 title: Todos Post
 ---
 
-Todos los post publicados:
-
+<h3 style="text-align:center;">Todos los post publicados ordenados alfabéticamente:</h3>
+<hr style="width: 80%">
 <div style="column-count: 2;">
-	{% for post in site.posts %}
+	{% assign sortedPosts = site.posts | sort: 'title' %}
+	{% for post in sortedPosts  %}
         <a href= "{{ site.url }}{{ site.baseurl }}{{  post.url }}" > {{ post.title }}-( {{ post.date | date_to_string }} )</a><br>
 	{% endfor %}
 </div>

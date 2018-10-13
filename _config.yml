@@ -42,4 +42,6 @@ reverse: false
 donations:
   paypal:
     text:           Donate      # Button text
-    
+  
+# Para sacar cloud Tags
+tag_dir: tag

@@ -1,1 +1,25 @@
-<footer><span>@2015 - Emerald</span></footer>
+<footer>
+    <h4> Etiquetas</h4>
+{% assign all_tags = '' | split: ',' %}
+
+ {% for post in site.posts %}
+    {% for tags in post.tags %}
+        {% for tag in tags %}
+            {% assign all_tags = all_tags | push: tag %}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+
+{% assign all_tags = all_tags | sort %}
+{% assign all_tags1 = all_tags | uniq %}
+
+<ul class="tags">
+    {% for tag in all_tags1 %}
+    <li>
+        <a href="{{ site.url }}{{ site.baseurl }}{{ site.tag_dir | prepend: '/' }}/{{ tag | uri_escape }}" class="tag">
+            {{ tag }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+</footer>

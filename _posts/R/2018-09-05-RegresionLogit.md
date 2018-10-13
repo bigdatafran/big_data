@@ -3,7 +3,7 @@ title: Regresión Logit (I)
 layout: post
 category: [R,Regresion_Logit]
 type: "mat"
-tags: [regresion,clasificacion,regresion_Logit]
+tags: [regresion,clasificacion,regresion-logit]
 author: "Francisco Rodríguez"
 comments: true
 ---

@@ -1,6 +1,7 @@
 # Site settings
 title: Big Data blog
-description: "A minimal blog template, build with Jekyll."
+description: "Un blog donde podrás encontrar muchas de las herramienta 
+utilizadas en el campo de big data, así como en el análisis de los datos"
 #url: "http://www.jacoporabolini.com/emerald"
 #url: "https://bigdatafran.github.io/big_data/"
 author:
@@ -16,6 +17,8 @@ destination: ./_site
 permalink: /:title
 paginate: 8
 paginate_path: /page:num/
+
+include: [/tag/]
 
 # Default values
 defaults:
@@ -46,3 +49,5 @@ donations:
   
 # Para sacar cloud Tags
 tag_dir: tag
+
+

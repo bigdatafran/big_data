@@ -17,16 +17,22 @@ layout: default
 		{{ content }}
 		
 	</div>
-	<span>[
+	<hr>
+	<h3>Etiquetas de este post</h3>
+	<ul class="tags">
 			{% for tag in page.tags %}
 			  {% capture tag_name %}{{ tag }}{% endcapture %}
-			  <a href="{{ site.url }}{{ site.baseurl }}/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-			{% endfor %}
-		  ]</span>
+			 	<li> 
+			  <a href="{{ site.url }}{{ site.baseurl }}/tag/{{ tag_name }}" class="tag2">{{ tag_name }}&nbsp;</a>
+				</li>
+			  {% endfor %}
+	</ul>
+			
+	<hr>
 	<br>
 	{% include donations-paypal.html %}
 	
-	<hr style="color:#1e824c;size:10;width:80%">
+	<hr style="color:#1e824c;size:10">
 	<br>
 	<!-- Incluyo los comentarios-->
 	{% if page.comments %}

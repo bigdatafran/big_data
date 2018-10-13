@@ -1,5 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: anaconda"
+title: "anaconda"
 tag: anaconda
+permalink: /tag/anaconda
 ---

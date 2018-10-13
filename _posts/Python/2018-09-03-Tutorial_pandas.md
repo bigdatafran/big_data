@@ -3,7 +3,7 @@ title: Introducción a Pandas
 layout: post
 category: [Python,Pandas]
 type: "normal"
-tags: [Python,Pandas,Numpy,Matplotlib]
+tags: [python,pandas,numpy,matplotlib]
 author: "Francisco Rodríguez"
 comments: true
 ---

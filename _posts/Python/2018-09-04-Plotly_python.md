@@ -3,7 +3,7 @@ title: Introducción a Plotly
 layout: post
 category: [Python]
 type: "normal"
-tags: [Python,Plotly]
+tags: [python,plotly]
 author: "Francisco Rodríguez"
 comments: true
 ---

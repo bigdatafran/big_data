@@ -3,7 +3,7 @@ title: Gráficos Python
 layout: post
 category: [Python,Graficos]
 type: "normal"
-tags: [Python,Matplotlib,Graficos,Plot]
+tags: [python,matplotlib,graficos,plot]
 author: "Francisco Rodríguez"
 comments: true
 ---

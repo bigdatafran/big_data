@@ -3,7 +3,7 @@ title: Clasificación Logit
 layout: post
 category: [R,Regresion_Logit,Clasificación]
 type: "normal"
-tags: [Regresion,Clasificacion,Regresion_Logit,Curva_ROC]
+tags: [regresion,clasificacion,regresion_Logit,curva_ROC]
 author: "Francisco Rodríguez"
 comments: true
 ---

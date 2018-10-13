@@ -29,7 +29,7 @@ defaults:
 # Plugins
 plugins:
   - jekyll-paginate
-  - jekyll-tag-pages
+ 
 
 # Custom variables
 version: "1.1.0"

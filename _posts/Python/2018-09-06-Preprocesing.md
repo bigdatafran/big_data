@@ -3,7 +3,7 @@ title: Pre-proceso datos
 layout: post
 category: [Python,Scikit-learn]
 type: "normal"
-tags: [Python,Datos,Preproceso,Estandarizacion]
+tags: [python,datos,preproceso,estandarizacion]
 author: "Francisco Rodríguez"
 comments: true
 ---

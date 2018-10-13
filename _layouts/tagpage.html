@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<div class="post">
+        {% assign n=site.tags[page.tag] | size %}
+<h1>Etiqueta: {{ page.tag }}({{ n }})</h1>
+<hr>
+<ul>
+{% for post in site.tags[page.tag] %}
+  <li><a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> ({{ post.date | date_to_string }})<br>
+    {{ post.description }}
+  </li>
+{% endfor %}
+</ul>
+</div>
+<hr>
+
+
+
+{% if n < 8 %}
+    {% assign m = 8 | minus : n %}
+    {% for i in (1..m) %}
+        <br>
+    {% endfor %}
+{% endif %}

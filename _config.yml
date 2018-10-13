@@ -13,7 +13,7 @@ baseurl: "/big_data/" # Change this to your relative path (ex: /blog/), or leave
 markdown: kramdown
 source: .
 destination: ./_site
-permalink: /:title
+#permalink: /:title
 paginate: 8
 paginate_path: /page:num/
 

@@ -3,7 +3,7 @@ title: OpenTSDB
 layout: post
 category: [Ejecucion-distribuida]
 type: "normal"
-tags: [opentesdb,spark,hbase]
+tags: [opentsdb,spark,hbase]
 author: "Francisco Rodríguez"
 comments: true
 ---

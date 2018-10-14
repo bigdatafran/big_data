@@ -23,6 +23,9 @@
 
 #nav {
   @include nav-position(right);
+  //Lo he añadido yo para los menús esten alineados izquierda
+  text-align: left !important;
+  padding-left: 35px;
 }
 
 #nav-left {

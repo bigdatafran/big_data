@@ -415,6 +415,8 @@ optimalCutoff(datos$Y,datos$Prob)
 
     ## [1] 0.5999795
 
+# Curva de ROC
+
 Una de las funciones más utilizadas en problemas de clasificación es la curva de ROC, cuya área que determina con los ejes de abscisas nos permite evaluar la fiabilidad de la clasificación. Esta curva por ejemplo puede ser de mucha utilidad, si se quieren comparar dos o más modelos de clasificación. Esta curva se construye de la siguiente manera.
 
 Los valores tanto en el eje de abscisas como de ordenadas van a estar entre cero y uno. En el eje de abscisas, se va a colocar el valor de 1-especificidad, y en el de ordenadas el valor de la sensibilidad. Como ya hemos visto para cada valor del punto de corte se obtiene un valor de especificidad y otro de sensibilidad. Entonces hacemos variar el punto de corte entre cero y uno y ya tenemos los pares de valores necesarios para construir la curva de ROC. Con los cálculos que se han hecho anteriormente, la representación de la curva de ROC es muy fácil:

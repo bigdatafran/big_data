@@ -28,7 +28,7 @@ En scikit-learn el problema se enfoca desde un punto de vista de optimización, 
 
 En el supuesto de que se quiera minimizar la función de coste utilizando la norma L1, el problema de optimización es el siguiente:
 
-\\[ \underset{w,c}{min}\left\Vert W\right\Vert _{1}+C\sum_{i=1}^{n}log(exp(-y_{i}(X_{i}^{T}W+c))+1) \\]
+\\[ \underset{w,c}{min}\left\Vert W\right\Vert_1 +C\sum_{i=1}^{n}log(exp(-y_{i}(X_{i}^{T}W+c))+1) \\]
 
 
 Recordar del post anterior que en este tipo de modelos, las probabilidades de los valores que toma la variable independiente , se modelan de acuerdo a la función de tipo logístico, y en concreto que:
@@ -773,3 +773,7 @@ plt.show()
 
 
 ![png](./img/jupyter/2018-09-10-LogitRegreScikit/output_60_0.png)
+
+<div class="descargar">
+<a href="{{ site.url }}{{ site.baseurl }}/jupyter/logistic_regression.ipynb" download>Descargar fichero *.ipynb</a>
+</div>

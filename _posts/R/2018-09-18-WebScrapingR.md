@@ -524,3 +524,7 @@ remDr <- rsd[["client"]]
 Como has podido comprobar con la instrucción "rsd &lt;- rsDriver(browser = "chrome")" y la siguiente te levanta el navegador google chrome ( ojo, para este ejemplo necesitas tenerlo instalado ). Es preciso matizar que estas páginas están configuradas para que si se lanzan muchas consultas, se bloquee la petición de una forma temporal. Yo he podido comprobar que después una media hora aproximadamente se pueda volver a realizar la petición y te facilita la respuesta correspondiente como en este caso.
 
 Con esto finaliza la exposición de esta materia, que espero te pueda servir de gran utilidad para todos los trabajos que sobre ello quieras realizar.
+
+<div class="descargar">
+    <a href="{{ site.url }}{{ site.baseurl }}/CodeR/web_scraping_R.Rmd" download>Descargar fichero *.Rmd</a>
+</div>

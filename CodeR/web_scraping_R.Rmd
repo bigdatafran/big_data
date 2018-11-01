@@ -1,0 +1,231 @@
+---
+title: "Untitled"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Introducción
+
+
+En este post me voy a centrar en una técnica muy utilizada dentro del mundo de Big Data pues permite obtener información de una forma directa de muchos de los sitios web que hoy en día existen dentro de la red de redes. La técnica se denomina *"web scraping"* usando el término anglosajón utilizado para ello, y consiste básicamente en los siguiente.
+
+Toda página web pose una estructura determinada, identificada por las etiquetas html, xml o bien por las hojas de estilo en cascada denominadas *"css"*. Pues bien básicamente el método consiste en acceder al contenido de las páginas web y elegir los elementos que nos interesan para bajar esos datos a nuestro sistema y poder trabajar sobre ellos.
+
+Como puede desprenderse la técnica es sumamente interesante y abre la puerta  una   búsqueda amplia de información y sobre una gran cantidad de materias, amen de poder hacer un seguimiento en el tiempo, sin coste alguno, y de una forma fácil y precisa. 
+
+No obstante lo anterior, existe un gran inconveniente a todo lo dicho anteriormente, y básicamente consiste en que hay muchas páginas web, que con la finalidad de controlar estos métodos, disponen de procedimientos automáticos para que cuando se detecte este tipo de herramientas cortan el suministro y te meten en una "lista negra" ( en términos anglosajones también denominada blacklist ) impidiendo su acceso de nuevo, en ciertas ocasiones de manera temporal, mientras que en otras de forma permanente. 
+
+Las posibilidades que abre este sistema de explotación de la web son inmensas, ya que con esta información, entre otras muchas otras cosas se podría por ejemplo:
+
+1.- Utilizar la información que proporciona la [base de datos IMDB](https://www.imdb.com/chart/boxoffice){:target="_blank"} (Bases de datos de películas de internet) como fuente de información para asesorar sobre películas, en base a la puntuación que otras personas han otorgado a las mismas.
+
+2.- Explotar información aparecida en redes sociales, a fin de analizar sentimientos, su evolución y opiniones sobre determinados temas.
+
+3.- Pensar en el potencial existente para el análisis de precios, o búsquedas de productos en páginas como la del Corte Inglés, Amazon, etc, etc, etc.
+
+# Herramientas a tener en cuenta dentro de este campo.
+
+Para poder trabajar en esta materia, es necesario tener ciertos conocimientos que a continuación se pasan a exponer.
+
+1.- Inicialmente es preciso conocer que existen una serie de paquetes en R que están especializados en este tipo de búsqueda de información. A continuación se exponen los que más ampliamente se utilizan dentro de este campos:
+
+* **El paquete rvest** es uno de los más utilizados, que permite hacer "scrape" sobre páginas web, de una forma ágil, fácil y dinámica. Un tutorial en inglés [lo puedes econtrar en este enlace](https://cran.r-project.org/web/packages/rvest/rvest.pdf){:target="-blank"}.
+
+* **El paquete httr** que facilita un conjunto de herramientas muy útiles para trabajar con páginas web. Un tutorial en inglés [lo puedes encontrar en este enlace](https://cran.r-project.org/web/packages/httr/httr.pdf){:target="blank"}.
+
+* **El paquete RSelenium**. Selenium es un entorno de pruebas de software para aplicaciones basadas en la web y RSelenium es un paquete enfocado para permitir esta tarea desde R. Con este paquete, también se puede tener acceso al contenido de las páginas web, y poder entresacar información de las mismas. Un tutorial en inglés [lo puedes encontrar en este enlace](https://cran.r-project.org/web/packages/RSelenium/RSelenium.pdf){:target="_blank"}. 
+
+* **El paquete curl**, si bien no es trascendental para esta materia, si permite ejecutar instrucciones del tipo "curl" muy extendidas dentro del mundo linux. Un tutorial en inglés [lo puedes encontrar en este enlace](https://cran.r-project.org/web/packages/curl/curl.pdf){:target="_blank"}.
+
+Además de las librerías anteriores, también es importante, aunque no imprescindible, tener conocimentos sobre la etiquetas HTML y las hojas de estilo en cascada, es decir de CSS, pues gracias  a esas etiquetas y al código CSS podremos apuntar a una determinada posición de la página web y extraer la información que precisemos.Existen en internet muchos lugares que pueden hacer luz sobre estas cuestiones, pero la que [te indico en este enlace](http://flukeout.github.io/){:target="blank"} considero que es muy atractiva y fácil de entender para comprender tanto CSS como las etiquetas HTML.
+
+También existen herramientas gratuitas muy interesantes para poder comprender la estructura de una página web y poder interactuar con ella, para entresacar su información. Una primera herramienta es el denominado *"selector Gadget"* que [lo  puedes encontrar en este enlace](https://selectorgadget.com/){:target='blank'}, y que por ejemplo en google chrome lo puedes instalar como una extensión del navegador ( [en este enlace puedes](https://support.google.com/chrome_webstore/answer/2664769?hl=es){:target='blank'} ver cómo instalar esas extensiones ).
+
+<br><center>
+![Selector Gadget](fig1.PNG)
+</center><br>
+
+En la figura anterior se muestra el icono en el que hay que hacer click para activar esta utilidad mediante la cual podemos saber el tipo de elemento css y la etiqueta HTML a la que tenemos que hacer referencia para seleccionar la parte correspondiente de la página web.
+
+Otra herramienta para mi mucho más interesante que la indicada anteriormente es la denominada **DevTools** que [la puedes encontrar en este enlace](https://developers.google.com/web/tools/chrome-devtools/?hl=es){:target='blank'}. En google chrome y en Mochila ya viene instalada por defecto. Para que aparezca en google chrome hay que utilizar conjuntamente las siguientes teclas: *Ctrl+Mayúscula+I* o bien simplemente presionar la tecla F12, y entonces nos aparecerá una imagen similar a la que se muestra en el gráfico inferior.
+
+![DevTools](fig2.PNG)
+
+Con DevTools, puedes perfectamente identificar todos y cada unos de los elementos de la página web, incluso puedes cambiar en el panel de la derecha en modo pruebas para ver cómo queda determinada etiqueta CSS. Esta herramienta es muy poderosa y fácil de manejar por lo que la recomiendo claramente tanto para este tipo de trabajos, como para cualquier otro relacionado con el contenido de las páginas web.
+
+#Utilización de rvest.
+
+Vamos a continuación a ver cómo podremos sacar el contenido de una página web para poder interactuar con su contenido. Lo vamos a hacer extrayendo datos desde la siguiente página web: https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm.
+
+```{r}
+# Añadir libreria
+if (!require("rvest")) install.packages("rvest"); require("rvest")
+#Indicamos la url con la que trabajaremos
+url<-"https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm"
+
+#Ahora descargamos la página web
+pagina<-read_html(url)
+# Veamos su estructura
+str(pagina)
+```
+
+Una vez descargada la página, ya podremos ir extrayendo información de la misma. Con ayuda de DevTools, podremos ver que se puede extraer, entre otras, la siguiente información.
+
+1.- **Título**. Elemento css class="titleColumn"
+
+2.- **Año*. Elemento css class="secondaryInfo"
+
+3.- **Posición y cambio en el ranking**. Elemento css class="velocity"
+
+4.- **Rating**. Elemento css class="ratingColumn imdbRating"
+
+Bien de acuerdo con los elementos que podremos entresacar, comenzaremos por sacar los títulos de las películas. Para ello, podríamos utilizar el código siguiente:
+
+```{r}
+# Utilizamos el elemento css="titleColumn" para sacar estos títulos
+titulos_html=html_nodes(pagina,".titleColumn")
+print(head(titulos_html))
+```
+
+Como vemos el resultado que se obtiene es la etiqueta completa del documento HTML, si queremos entresacar el texto de la etiqueta, deberemos utilizar el código siguiente:
+
+```{r}
+titulos<-html_text(titulos_html)
+
+head(titulos)
+```
+
+Observamos que el resultado no es el que realmente deseamos, pues nos aparece el título sí pero además mucha más información que entorpece el tratamiento del dato que queremos entresacar.
+
+El motivo de esto lo vemos observando la estructura del documento HTML, pues podemos ver que el título está dentro de una etiqueta <a></a> que es hija de la class="titleColumn". Para resolver esto utilizaremos el código siguiente:
+
+```{r}
+titulos_html=html_nodes(pagina,".titleColumn>a")
+titulos<-html_text(titulos_html)
+head(titulos)
+
+```
+
+Con la instrucción ".titleColumn>a" indicamos que tome la clase titleColumn y después la etiqueta hijo de tipo a   que cuelga directamente de ella. Si quisiéramos hacer referencia a toda la descendencia (no solo a los hijos) se pondría *".titleColumn a"*.
+
+Otra forma de obtener lo anterior pero con pipelines, sería así:
+
+```{r}
+titulos<-pagina%>%html_nodes(".titleColumn>a")%>%html_text()
+head(titulos)
+
+```
+
+El resto de elementos se obtendría de forma muy similar, no obstante veamos a continuación cómo sacar la posición y el cambio de ratting, pues presenta cierto elemento diferenciador respecto a lo hecho en el ejemplo anterior, porque en este caso el string que entresacamos contiene dos elementos, uno es el ranking y el otro es el que indica los puestos que suben o bajan respecto del puestos anterior.
+
+```{r}
+posicion_rating_html<-html_nodes(pagina,".velocity")
+position<-html_text(posicion_rating_html)
+head(position)
+#Ahora sacamos la posición
+#substr(position,1,gregexpr(pattern =  "(",position)[[1]])
+if (!require("stringr")) install.packages("stringr"); require("stringr")
+print("Sacamos las posiciones de las peliculas ")
+as.numeric(substr(position,1,str_locate(position, "\\(")[1]-1))
+print("sacamos el movimiento de puesto")
+head(substr(position,str_locate(position, "\\(")[1],length(position) ))
+
+```
+
+El sentido del cambio del puesto es difícil sacarlo, pues si te fijas en la página web ese sentido está indicado con una flecha hacia arriba o hacia abajo, y eso no tiene transcripción literal. 
+
+Por último vamos a ver una propiedad muy importante del paquete rvest, es el método "html_table", ya que con él, una etiqueta "table" de html, se convierte en un dataframe de r. Veamos un ejemplo, en este caso de la url "http://www.bolsamadrid.es/esp/aspx/Mercados/Precios.aspx?indice=ESI100000000"
+
+```{r}
+url<-"http://www.bolsamadrid.es/esp/aspx/Mercados/Precios.aspx?indice=ESI100000000"
+pagina2<-read_html(url)
+tabla_nodo<-html_nodes(pagina2,".TblPort")
+# En esa página web hay al menos dos tablas. Cogemos la segunda
+tabla<-html_table(tabla_nodo[[2]])
+head(tabla)
+
+```
+
+#Web scraping con httr
+
+El paquete httr contiene clases muy útiles para interactuar con páginas web, por ese motivo es un paquete muy útil para el scraping de páginas web. Es un paquete con un enfoque centrado sobre todo en el estudio de los contenidos de las páginas web. En los ejemplos que a continuación voy a poner se va a utilizar una dirección web de venta de viviendas entre particulares, y en la provincia de Valladolid. En concreto la dirección web que voy a utilizar es la siguiente: https://www.idealista.com/venta-viviendas/valladolid-provincia/. Para leerla se utilizará la siguiente instrucción.
+
+```{r}
+if (!require("httr")) install.packages("httr"); require("httr")
+url<-"https://www.idealista.com/venta-viviendas/valladolid-provincia/"
+
+pisos_web<-GET(url)
+
+```
+
+
+Una vez obtenido el objeto que devuelve la instrucción GET, podemos obtener otro tipo de información.
+
+```{r}
+print("Las cookies recibidas:")
+pisos_web$cookies
+print("Valores asociados a los headers de la página")
+pisos_web$headers
+
+```
+
+Este paquete tiene muchas opciones interesantes y muy útiles a la hora de trabajar con páginas web. El lector interesado puede encontrar todas sus posibilidades en el tutorial del propio paquete. Aquí y en lo que sigue me voy a centrar en el contenido de este post, es decir en la posibilidad de analizar los contenidos de cara a posibles estudios estadísticos de la materia.
+
+En concreto si se quiere tomar el contenido en bruto, es decir con etiquetas html y código css, se puede obtener de la siguiente manera. 
+
+```{r}
+print(content(pisos_web,encoding = "UTF-8"))
+```
+
+Ahora que ya tenemos el contenido de la página web podremos utilizar herramientas ya vistas anteriormente para entresacar la información que precisemos. Por, ejemplo supongamos que queremos extraer el precio de los pisos que figuran en dicha página. Esto lo conseguiremos de la siguiente manera.
+
+```{r}
+if (!require("rvest")) install.packages("rvest"); require("rvest")
+nodos<-html_nodes(content(pisos_web,encoding = "UTF-8"),".txt-big")
+nodos
+```
+
+Como puedes ver en el ejemplo anterior, no se obtiene el resultado deseado y el motivo no es que la instrucción esté mal, sino que la página web, o mejor dicho el sitio web está creado para que no se le puedan hacer consultas de forma automática. Una forma de ver esto es consultando el fichero robots.txt que se encuentra en la raíz de todo sitio web y que en este caso sería la siguiente dirección: https://www.idealista.com/robots.txt. Ahí podemos ver que hay una línea que dice "Disallow: /venta-*,*,*," e indica que no se puede acceder con procedimientos automáticos a ese tipo de dirección.
+
+Vamos a intentarlo con otra dirección, en este caso del Banco de España, de donde podremos entresacar las noticias que en dicha página web aparecen. 
+
+
+```{r}
+bde<-GET("https://www.bde.es/bde/es/")
+html_text(html_nodes(content(bde),".contentnews a"))
+
+```
+
+# Web scraping con Rselenium
+
+Tal y como podemos encontrar en la wikipedia **Selenium** es un entorno de pruebas de software para aplicaciones basadas en la web, y Rselenium es un paquete de R que permite conseguir esos objetivos. Se pueden aprovechar las herramientas de ese paquete para hacer también web scraping. A continuación de muestra un ejemplo en el que se entresacan los precios de los coches que aparecen en milanuncios.
+
+```{r}
+if (!require("RSelenium")) install.packages("RSelenium"); require("RSelenium")
+
+#Creamos el driver remoto
+rsd <- rsDriver(browser = "chrome")
+remDr <- rsd[["client"]]
+# Sacamos solo información de cuatro páginas, pues con más lo suele bloquear
+
+  for(j in 1:3){
+    url="https://www.milanuncios.com/coches-de-segunda-mano/?pagina=j"
+    #Go to your url
+    remDr$navigate(url)
+    page <- read_html(remDr$getPageSource()[[1]])
+    print(page %>% html_nodes(".aditem-price") %>% html_text())
+
+  }
+
+
+```
+
+Como has podido comprobar con la instrucción "rsd <- rsDriver(browser = "chrome")" y la siguiente te levanta el navegador google chrome ( ojo, para este ejemplo necesitas tenerlo instalado ). Es preciso matizar que estas páginas están configuradas para que si se lanzan muchas consultas, se bloquee la petición de una forma temporal. Yo he podido comprobar que después una media hora aproximadamente se pueda volver a realizar la petición y te facilita la respuesta correspondiente como en este caso.
+
+Con esto finaliza la exposición de esta materia, que espero te pueda servir de gran utilidad para todos los trabajos que sobre ello quieras realizar.
+

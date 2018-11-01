@@ -3,7 +3,7 @@ title: Web scraping con Python
 layout: post
 category: [Python]
 type: "normal"
-tags: [r,web-scraping]
+tags: [python,web-scraping]
 author: "Francisco Rodríguez"
 comments: true
 ---

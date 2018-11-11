@@ -197,5 +197,5 @@ ggplot(mtcars,aes(x=carb))+
 A continuación de dejo un enlace para que te puedas descargar un fichero de código R, con ejemplos sobre cómo poder utilizar ggplot2 y qgplot. 
 
 <div class="descargar">
-    <a href="{{ site.url }}{{ site.baseurl }}/CodeR/Intro_ggplot2.R" download>Descargar fichero *.Rmd</a>
+    <a href="{{ site.url }}{{ site.baseurl }}/CodeR/Intro_ggplot2.R" download>Descargar fichero *.R</a>
 </div>

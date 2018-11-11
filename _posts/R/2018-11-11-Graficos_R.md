@@ -28,7 +28,7 @@ Indudablemente, existen más paquetes diseñados para la presentación de gráfi
 
 1.-[Gráficos en R con el paquete básico.](https://bigdatafran.github.io/big_data/doc/graficosR-Public.pdf){:target="\_blank"}
 
-2.- [Gráficos más avanzados en R con ggplot2](https://bigdatafran.github.io/big_data/doc/ggplot_Publi.pdf){:target="\_blank"}
+2.- [Gráficos más avanzados en R con ggplot2](https://bigdatafran.github.io/big_data/doc/ggplot_Publi.pdf){:target="\_blank"} (tarda un poco en descargar)
 
 En la elaboración de dichos tutoriales he empleado mucho tiempo y he puesto todo mi empeño, en poder explicar lo mejor posible, cómo construir gráficos estadísticos con R, y por lo tanto te agradecería me comentaras cual es tu aponión sobre el trabajo, y cuales pueden ser los aspectos que se pueden mejorar. Tu opinión la puedes añadir sin más que escribir un comentario al final del presente post.
 
@@ -193,3 +193,9 @@ ggplot(mtcars,aes(x=carb))+
 ```
 
 <img src="./img/R/2018-11-11-Graficos_R/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+
+A continuación de dejo un enlace para que te puedas descargar un fichero de código R, con ejemplos sobre cómo poder utilizar ggplot2 y qgplot. 
+
+<div class="descargar">
+    <a href="{{ site.url }}{{ site.baseurl }}/CodeR/Intro_ggplot2.R" download>Descargar fichero *.Rmd</a>
+</div>

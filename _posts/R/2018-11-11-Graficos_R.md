@@ -194,7 +194,9 @@ ggplot(mtcars,aes(x=carb))+
 
 <img src="./img/R/2018-11-11-Graficos_R/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
-A continuación de dejo un enlace para que te puedas descargar un fichero de código R, con ejemplos sobre cómo poder utilizar ggplot2 y qgplot. 
+A continuación de dejo un enlace para que te puedas descargar un fichero de código R, con ejemplos sobre cómo poder utilizar ggplot2 y qgplot.
+
+Por último indicar que existe un asistente de ggplot contenido dentro del [paquete ggplotAssist](http://rpubs.com/cardiomoon/321791){:target='_blank'}, que te puede facilitar mucho creación de un gráfico estadístico con el paquete ggplot2.
 
 <div class="descargar">
     <a href="{{ site.url }}{{ site.baseurl }}/CodeR/Intro_ggplot2.R" download>Descargar fichero *.R</a>
